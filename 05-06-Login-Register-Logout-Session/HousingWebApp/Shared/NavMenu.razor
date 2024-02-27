@@ -1,0 +1,83 @@
+﻿@using HousingWebApp.DB
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject NavigationManager navigateTo
+
+@inject ProtectedLocalStorage storage
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">HousingWebApp</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        @if(email!=null)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="logout" @onclick="Logout">
+                    <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
+                </NavLink>
+            </div>
+        }else{
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="register">
+                <span class="oi oi-person" aria-hidden="true"></span> Register
+            </NavLink>
+            </div>
+            <div class="nav-item px-3">
+            <NavLink class="nav-link" href="login">
+                <span class="oi oi-account-login" aria-hidden="true"></span> Login
+            </NavLink>
+            </div>
+        }
+
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    string? email = null;
+    AppUser? user = null;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            email = null;
+            user = null;
+            var res = await storage.GetAsync<string>("email");
+            var res2 = await storage.GetAsync<AppUser>("user");
+            if (res.Success && res2.Success)
+            {
+                email = res.Value;
+                user = res2.Value;
+            }
+            StateHasChanged();
+        }
+    }
+    async Task Logout()
+    {
+        await storage.DeleteAsync("email");
+        await storage.DeleteAsync("user");
+        email = null;
+        user = null;
+        StateHasChanged();
+    }
+    
+}

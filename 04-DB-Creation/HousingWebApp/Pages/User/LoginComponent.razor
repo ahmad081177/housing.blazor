@@ -1,0 +1,40 @@
+﻿@page "/login"
+@inject NavigationManager navigateTo;
+<PageTitle>Login to Housing</PageTitle>
+
+<h3>Welcome to Login to Housing App</h3>
+<form>
+    <div class="container">
+        <label for="uname"><b>Email:</b></label>
+        <input type="email" placeholder="user@gmail.com" name="uname" @bind="email" required />
+        <br />
+        <label for="password"><b>Password:</b></label>
+        <input type="password" placeholder="****" name="password" @bind="password" required />
+        <br />
+        <button type="button" @onclick="Login">Login</button>
+    </div>
+    @if (error.Length > 0)
+    {
+        <div class="text-danger">@error</div>
+    }
+</form>
+@code {
+    string email { get; set; }
+    string password { get; set; }
+    string error { get; set; } = "";
+
+    async Task Login()
+    {
+        error = "";
+        if(email==""||password=="")
+        {
+            error = "Please enter email and password";
+            StateHasChanged();
+            return;
+        }
+        //goto DB and try login...
+
+        //goto home page
+        navigateTo.NavigateTo("/");
+    }
+}
