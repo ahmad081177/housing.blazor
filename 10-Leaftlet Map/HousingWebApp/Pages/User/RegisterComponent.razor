@@ -1,0 +1,117 @@
+﻿@page "/register"
+@using HousingWebApp.Models
+@using HousingWebApp.ViewModels
+@using HousingWebApp.Services
+@inject HousingDBContext db
+@inject NavigationManager navigateTo
+@inject EmailService emailService
+@inject AddressService addressService
+
+<h3>Register to Housing</h3>
+
+<PageTitle>Register to Housing</PageTitle>
+<EditForm Model="@model" OnValidSubmit="RegisterUser">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <InputText id="firstName" class="form-control" @bind-Value="model.FirstName" />
+        <ValidationMessage For="@(()=> model.FirstName)"/>
+    </div>
+
+<div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <InputText id="lastName" class="form-control" @bind-Value="model.LastName" />
+    <ValidationMessage For="@(()=> model.LastName)" />
+</div>
+
+<div class="form-group">
+    <label for="email">Email:</label>
+    <InputText id="email" class="form-control" @bind-Value="model.Email" />
+    <ValidationMessage For="@(()=> model.Email)" />
+</div>
+
+<div class="form-group">
+    <label for="cemail">Confirm Email:</label>
+    <InputText id="cemail" class="form-control" @bind-Value="model.ConfirmEmail" />
+    <ValidationMessage For="@(()=> model.ConfirmEmail)" />
+</div>
+
+<div class="form-group">
+    <label for="password">Password:</label>
+    <InputText id="password" class="form-control" @bind-Value="model.Password" />
+    <ValidationMessage For="@(()=> model.Password)" />
+</div>
+
+<div class="form-group">
+    <label for="cpassword">Confirm Password:</label>
+    <InputText id="cpassword" class="form-control" @bind-Value="model.ConfirmPassword" />
+    <ValidationMessage For="@(()=> model.ConfirmPassword)" />
+</div>
+
+<div class="form-group">
+    <label for="phone">Phone:</label>
+    <InputText id="phone" class="form-control" @bind-Value="model.Phone" />
+    <ValidationMessage For="@(()=> model.Phone)" />
+</div>
+
+<h3>Address</h3>
+<div class="form-group">
+    <label for="address1">Country:</label>
+    <InputText id="address1" class="form-control" @bind-Value="model.Address.Country" />
+    <ValidationMessage For="@(()=> model.Address.Country)" />
+</div>
+    <div class="form-group">
+        <label for="address2">City:</label>
+        <InputText id="address3" class="form-control" @bind-Value="model.Address.City" />
+        <ValidationMessage For="@(()=> model.Address.City)" />
+    </div>
+    <div class="form-group">
+        <label for="address3">Street:</label>
+        <InputText id="address3" class="form-control" @bind-Value="model.Address.Street" />
+    </div>
+<button type="submit" class="btn btn-primary">Register</button>
+
+
+</EditForm>
+@code {
+    AppRegister model = new AppRegister();
+    async Task RegisterUser()
+    {
+        //check if user exists by email
+        var temp = db.AppUsers.Where(u => u.Email == model.Email).FirstOrDefault();
+        if (temp == null)
+        {
+            //goto DB and try register...
+            AppUser user = new AppUser();
+            user.Email = model.Email;
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Phone = model.Phone;
+            user.Address.City = model.Address.City;
+            user.Address.Street = model.Address.Street;
+            user.Address.Country = model.Address.Country;
+            user.Password = model.Password;
+            user.IsAdmin = false;
+            //convert address to longt and lat
+            var r = await addressService.ConvertAddress(user.Address);
+            if(r!=null)
+            {
+                user.Address.Lat = r.Item1;
+                user.Address.Longt = r.Item2;
+            }
+            db.AppUsers.Add(user);
+            await db.SaveChangesAsync();
+            //Send Hello email
+            await emailService.SendEmailAsync(user.Email, "Welcome to Housing", "Hello " + user.FirstName + ",<br/>Welcome to Housing App. You have successfully registered.<br/>Thanks");
+            //goto home page
+            navigateTo.NavigateTo("/");
+        }
+        else
+        {
+            //Error message
+        }
+
+    }
+}

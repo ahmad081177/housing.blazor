@@ -1,0 +1,129 @@
+﻿@page "/house/new/"
+@using HousingWebApp.Models
+@using HousingWebApp.Services
+@inject HousingDBContext db
+@inject NavigationManager navigateTo
+@inject AddressService addressService
+
+<PageTitle>New House</PageTitle>
+
+<h3>Create New House</h3>
+@if (model == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <EditForm Model="@model" OnValidSubmit="SaveHouse">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        @if (error != null && error.Length > 0)
+        {
+            <div class="alert alert-danger">@error</div>
+        }
+        <div class="form-group">
+            <label for="info">Information:</label>
+            <InputText id="info" class="form-control" @bind-Value="model.Info" />
+        </div>
+
+        <div class="form-group">
+            <label for="mimage">Main Image:</label>
+            <InputFile id="mimage" class="form-control" title="House Image" accept=".png,.jpg" OnChange="HandleMainImage" />
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" required id="price" class="form-control" @bind="model.Price" />
+        </div>
+        <div class="form-group">
+            <label for="sr">Square Root:</label>
+            <input type="number" required id="sr" class="form-control" @bind="model.SqrRoot" />
+        </div>
+        <div class="form-group">
+            <label for="hasSP">Has Swimming Pool:</label>
+            <div class="toggle-switch">
+                <input type="checkbox" id="hasSP" class="toggle-input" @bind="model.HasSwimmingPool" />
+                <label for="hasSP" class="toggle-label"></label>
+            </div>
+        </div>
+
+        <h3>Address</h3>
+        <div class="form-group">
+            <label for="address1">Country:</label>
+            <InputText id="address1" class="form-control" @bind-Value="model.Address.Country" />
+            <ValidationMessage For="@(()=> model.Address.Country)" />
+        </div>
+        <div class="form-group">
+            <label for="address2">City:</label>
+            <InputText id="address3" class="form-control" @bind-Value="model.Address.City" />
+            <ValidationMessage For="@(()=> model.Address.City)" />
+        </div>
+        <div class="form-group">
+            <label for="address3">Street:</label>
+            <InputText id="address3" class="form-control" @bind-Value="model.Address.Street" />
+        </div>
+        <button type="submit" class="btn btn-primary">Create New House</button>
+    </EditForm>
+}
+
+
+@code {
+    House model = null;
+    string error = null;
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if(firstRender)
+        {
+            model = new House();
+            StateHasChanged();
+        }
+        base.OnAfterRender(firstRender);
+    }
+    async Task SaveHouse()
+    {
+        if(Validate())
+        {
+            //convert address to longt and lat
+            var r = await addressService.ConvertAddress(model.Address);
+            if (r != null)
+            {
+                model.Address.Lat = r.Item1;
+                model.Address.Longt = r.Item2;
+            }
+            db.Add(model);
+            await db.SaveChangesAsync();
+            navigateTo.NavigateTo("/", true);
+        }
+        else
+        {
+            StateHasChanged();
+        }
+    }
+    bool Validate()
+    {
+        if (model.Price < 50)
+        {
+            error= "Price must be greater than 50";
+            return false;
+        }
+        if(model.SqrRoot < 50)
+        {
+            error = "Square root must be greater than 50";
+            return false;
+        }
+        return true;
+    }
+    async Task HandleMainImage(InputFileChangeEventArgs e)
+    {
+        var f = e.GetMultipleFiles().FirstOrDefault();
+        if(f!=null)
+        {
+            var f2 = await f.RequestImageFileAsync(f.ContentType, 300, 300);
+            var ms = new MemoryStream();
+            await f2.OpenReadStream().CopyToAsync(ms);
+            string s = Convert.ToBase64String(ms.ToArray());
+            s = $"data:{f.ContentType};base64,{s}";
+
+            model.MainImage = s;
+        }
+    }
+}

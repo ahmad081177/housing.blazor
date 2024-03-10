@@ -1,0 +1,42 @@
+﻿@page "/house/map"
+@using HousingWebApp.Models
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Microsoft.EntityFrameworkCore
+@inject IJSRuntime JS
+@inject ProtectedLocalStorage storage
+@inject HousingDBContext db
+<h3>Houses Map</h3>
+
+<div id="map"></div>
+
+@code {
+    private IJSObjectReference? module;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var user = await storage.GetAsync<AppUser>("user");
+            double lat = 33, lon = 33;
+            if (user.Success)
+            {
+                lon = user.Value.Address.Longt;
+                lat = user.Value.Address.Lat;
+            }
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "/Pages/House/HousesMap.razor.js");
+            await module.InvokeVoidAsync("map_init", lat, lon);
+            StateHasChanged();
+
+            await LoadHouses();
+            StateHasChanged();
+        }
+    }
+    private async Task LoadHouses()
+    {
+        var houses = db.Houses.Include(d => d.Address).ToList();
+        if (module != null)
+        {
+            await module.InvokeVoidAsync("show_houses", houses);
+        }
+    }
+}

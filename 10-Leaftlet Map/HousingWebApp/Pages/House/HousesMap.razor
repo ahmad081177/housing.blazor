@@ -1,0 +1,33 @@
+﻿@page "/house/map"
+@using HousingWebApp.Models
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject IJSRuntime JS
+@inject ProtectedLocalStorage storage
+
+<HeadContent>
+    <link href="/lib/leaflet/leaflet.min.css" rel="stylesheet" />
+    <script src="/lib/leaflet/leaflet.min.js"></script>
+</HeadContent>
+<h3>Houses Map</h3>
+
+<div id="map"></div>
+
+@code {
+    private IJSObjectReference? module;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var user = await storage.GetAsync<AppUser>("user");
+            double lat = 33, lon = 33;
+            if (user.Success)
+            {
+                lon = user.Value.Address.Longt;
+                lat = user.Value.Address.Lat;
+            }
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "/Pages/House/HousesMap.razor.js");
+            await module.InvokeVoidAsync("map_init", lat, lon);
+            StateHasChanged();
+        }
+    }
+}

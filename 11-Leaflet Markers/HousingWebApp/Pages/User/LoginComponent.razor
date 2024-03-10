@@ -1,0 +1,58 @@
+﻿@page "/login"
+@using HousingWebApp.Models
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Microsoft.EntityFrameworkCore
+@inject NavigationManager navigateTo
+@inject HousingDBContext db
+
+@inject ProtectedLocalStorage storage
+<PageTitle>Login to Housing</PageTitle>
+
+<h3>Welcome to Login to Housing App</h3>
+<form>
+    <div class="container">
+        <label for="uname"><b>Email:</b></label>
+        <input type="email" placeholder="user@gmail.com" name="uname" @bind="email" required />
+        <br />
+        <label for="password"><b>Password:</b></label>
+        <input type="password" placeholder="****" name="password" @bind="password" required />
+        <br />
+        <button type="button" @onclick="Login">Login</button>
+    </div>
+    @if (error.Length > 0)
+    {
+        <div class="text-danger">@error</div>
+    }
+</form>
+@code {
+    string email { get; set; }
+    string password { get; set; }
+    string error { get; set; } = "";
+
+    async Task Login()
+    {
+        error = "";
+        if(email==""||password=="")
+        {
+            error = "Please enter email and password";
+            StateHasChanged();
+            return;
+        }
+        //goto DB and try login...
+        var user = db.AppUsers.Where(u => u.Email == email && u.Password == password)
+                            .Include(b=>b.Address).
+                            FirstOrDefault();
+        if(user==null)
+        {
+            error = "Invalid email or password";
+            StateHasChanged();
+            return;
+        }
+        //save email in browser cookies
+        await storage.SetAsync("email", email);
+        await storage.SetAsync("user", user);
+        // StateHasChanged();
+        //goto home page
+        navigateTo.NavigateTo("/",true);
+    }
+}

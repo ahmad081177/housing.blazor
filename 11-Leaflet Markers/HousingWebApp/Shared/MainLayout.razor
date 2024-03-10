@@ -1,0 +1,70 @@
+﻿@using HousingWebApp.Models
+@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject NavigationManager navigateTo
+
+@inject ProtectedLocalStorage storage
+<PageTitle>Housing Web App</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            @if(email!=null)
+            {
+                <NavLink class="nav-link" href="logout" @onclick="Logout">
+                    <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
+                </NavLink>
+            }else{
+              <NavLink class="nav-link" href="register">
+                <span class="oi oi-person" aria-hidden="true"></span> Register
+            </NavLink>
+            <NavLink class="nav-link" href="login">
+                <span class="oi oi-account-login" aria-hidden="true"></span> Login
+            </NavLink>
+            }
+            <NavLink class="nav-link" href="/house/map">
+                <span class="oi oi-map" aria-hidden="true"></span> House Map
+            </NavLink>
+        </div>
+       
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    string? email = null;
+    AppUser? user = null;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            email = null;
+            user = null;
+            var res = await storage.GetAsync<string>("email");
+            var res2 = await storage.GetAsync<AppUser>("user");
+            if (res.Success && res2.Success)
+            {
+                email = res.Value;
+                user = res2.Value;
+            }
+            StateHasChanged();
+        }
+    }
+    async Task Logout()
+    {
+        await storage.DeleteAsync("email");
+        await storage.DeleteAsync("user");
+        email = null;
+        user = null;
+        
+        StateHasChanged();
+    }
+}
