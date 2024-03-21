@@ -1,0 +1,37 @@
+﻿@page "/house/{id:int}"
+@using HousingWebApp.Models
+@using Microsoft.EntityFrameworkCore
+@inject HousingDBContext db
+
+<PageTitle>House Details</PageTitle>
+
+<h3>House Details</h3>
+@if(house != null)
+{
+    <div class="card" style="width:50%">
+        <img class="card-img-top" src="@house.MainImage" />
+        <div class="card-body">
+            <h5 class="card-title">@house.Info</h5>
+            <p class="card-text">Price: @house.Price</p>
+            <p class="card-text">Square Root: @house.SqrRoot</p>
+            <p class="card-text">Has Swimming Pool: @house.HasSwimmingPool</p>
+        </div>
+        <div class="card-footer">
+            <a href="/house/map" class="btn btn-primary">Show on Map</a>
+        </div>
+    </div>
+}
+else
+{
+    <h4>Loading...</h4>
+}
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+    private House? house;
+    protected override async Task OnInitializedAsync()
+    {
+        house = await db.Houses.Include(d => d.Address).FirstOrDefaultAsync(d => d.Id == id);
+    }
+}
