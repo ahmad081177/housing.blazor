@@ -1,1 +1,1 @@
-﻿var gmap_key = "AIzaSyAInz11lFY9_Q_WKFyiNHjsIhKVVu2W7kE"
+﻿var gmap_key = "A...E"
