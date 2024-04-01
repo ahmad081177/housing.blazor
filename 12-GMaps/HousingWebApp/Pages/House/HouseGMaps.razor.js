@@ -24,7 +24,7 @@ export async function initMap(lat = -34.397, lon = 150.644, zoom = 10) {
 
 export async function show_houses(houses) {
     // houses is a list of houses
-    for (var i = 0; i < length; i++) {
+    for (var i = 0; i < houses.length; i++) {
         var house = houses[i];
         var latLng = new google.maps.LatLng(house.address.lat, house.address.longt);
         // var marker = new google.maps.Marker({

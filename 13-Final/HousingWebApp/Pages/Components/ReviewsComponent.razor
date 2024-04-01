@@ -1,0 +1,166 @@
+﻿<!-- ReviewComponent.razor -->
+@using HousingWebApp.Models
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Microsoft.EntityFrameworkCore
+@using HousingWebApp.Pages.Components
+
+@inject HousingDBContext db
+@inject ProtectedLocalStorage storage
+@inject NavigationManager navigateTo
+
+<!-- Reviews list -->
+@if (reviews != null && reviews.Any())
+{
+    var rating = CalculateAverageRating();
+    <div class="card mt-4" id="reviewsSection">
+        <div class="card-header d-flex justify-content-between">
+            <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#reviewCollapse" >
+                <RatingComponent Rating="@rating"></RatingComponent>
+            </button>
+
+            <button @onclick="OpenAddReviewPopup" title="Add Review" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <span class="oi oi-plus" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div id="reviewCollapse" class="collapse" aria-labelledby="reviewsSection">
+            <div class="card-body">
+                @foreach (var review in reviews)
+                {
+                    <div class="review-card">
+                        <p><strong>Owner: @review.AppUser.FirstName , @review.AppUser.LastName</strong></p>
+                        <p>Rating: @review.Rating</p>
+                        <p>Review: @review.ReviewText</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    
+}
+else
+{
+    <p>No reviews available for this house.</p>
+}
+
+<!-- Add Review Popup -->
+ <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Review</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @onclick="CloseAddReviewPopup"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add review form here -->
+                    <form @onsubmit="SubmitReview">
+                        <div>
+                            <label for="reviewText">Review:</label><br />
+                            <textarea id="reviewText" @bind="ReviewText"></textarea>
+                        </div>
+                        <div>
+                            <label for="rating">Rating:</label>
+                            <select id="rating" @bind="Rating">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                        <button type="submit">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="mt-4">
+    <button class="btn btn-primary" @onclick="OpenAddReviewPopup" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Review</button>
+</div>
+
+@code {
+    [Parameter]
+    public int HouseId { get; set; }
+    private string ReviewText { get; set; } = "";
+    private int Rating { get; set; } = 3;
+    private House? house;
+    private List<Review>? reviews;
+    private AppUser? loggedInUser;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var res = await storage.GetAsync<AppUser>("user");
+            if (res.Success)
+            {
+                loggedInUser = res.Value;
+            }
+            else
+            {
+                throw new Exception("User not logged in");
+            }
+        }
+    }
+    // Other properties and methods
+
+    void OpenAddReviewPopup()
+    {
+        StateHasChanged();
+    }
+
+    async Task CloseAddReviewPopup()
+    {
+        await ReloadReviews();
+        StateHasChanged();
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        if (house == null)
+        {
+            await ReloadReviews();
+            StateHasChanged();
+        }
+    }
+    double CalculateAverageRating()
+    {
+        if (reviews != null && reviews.Any())
+        {
+            double d = reviews.Average(r => r.Rating);
+            return Math.Round(d, 2);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    async Task ReloadReviews()
+    {
+        //get house out of the id
+        house = await db.Houses
+        .FirstOrDefaultAsync(d => d.Id == HouseId);
+        //get the reviews for the house
+        reviews = await db.Reviews
+        .Where(r => r.HouseId == HouseId)
+        .Include(r => r.AppUser)
+        .ToListAsync();
+    }
+    private async Task SubmitReview()
+    {
+        Review review = new Review
+            {
+                ReviewText = ReviewText,
+                Rating = Rating,
+                HouseId = house.Id,
+                AppUserId = loggedInUser.Id
+            };
+        db.Reviews.Add(review);
+        await db.SaveChangesAsync();
+        // Clear the review form fields
+        ReviewText = string.Empty;
+        Rating = 3;
+        //reload UI
+        await ReloadReviews();
+        StateHasChanged();
+    }
+
+}

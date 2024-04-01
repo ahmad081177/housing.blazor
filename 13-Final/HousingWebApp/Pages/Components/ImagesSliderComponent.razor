@@ -1,0 +1,55 @@
+﻿@using Microsoft.EntityFrameworkCore
+
+@if (Base64Images != null && Base64Images.Any())
+{
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            @for (int i = 0; i < Base64Images.Count; i++)
+            {
+                @if (i == 0) {
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide @i"></button>
+                }
+                else{
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" aria-label="Slide @i"></button>
+                }
+            }
+        </div>
+        <div class="carousel-inner">
+            @for(int i=0; i<Images.Count;i++)
+                @if(i==0){
+                    <div class="carousel-item active">
+                        <img src="@Images[i]" class="d-block w-100" alt="Image @i">
+                    </div>
+                }
+                else{
+                    <div class="carousel-item">
+                        <img src="@Images[i]" class="d-block w-100" alt="Image @i">
+                    </div>
+                }
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+}
+else
+{
+    <p>No images available</p>
+}
+
+@code {
+    [Parameter] 
+    public ICollection<string> Base64Images { get; set; }
+    public List<string> Images { get; set; }
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        Images = new List<string>(Base64Images);
+    }
+}

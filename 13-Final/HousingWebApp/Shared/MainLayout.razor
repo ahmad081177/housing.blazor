@@ -1,0 +1,131 @@
+﻿@using HousingWebApp.Models
+@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject NavigationManager navigateTo
+
+@inject ProtectedLocalStorage storage
+<PageTitle>Housing Web App</PageTitle>
+
+<div class="page">
+    <div class="sidebar" style="@IconMenuCssClass width:22vh!important">
+        <NavMenu ShowIconMenu="ToggleIconMenu"/>
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <!--Map-->
+            <NavLink class="nav-link" href="/house/gmap">
+                <span class="oi oi-map" aria-hidden="true"></span> Map
+            </NavLink>
+            <!--House-->
+            <!-- House dropdown menu with submenus -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHouse" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="oi oi-home" aria-hidden="true"></span> House
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownHouse">
+                    <li>
+                        <NavLink class="nav-link" href="house/new">
+                            <span class="oi oi-plus" aria-hidden="true"></span> New House
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink class="nav-link" href="house/list">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> List Houses
+                        </NavLink>
+                    </li>
+                </ul>
+            </li>
+            <!--User-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="oi oi-person" aria-hidden="true"></span> User
+                </a>
+                <ul class="dropdown-menu" style="list-style-type:none;" aria-labelledby="navbarDropdown">
+                    <li>
+                        <NavLink class="nav-link" href="login">
+                            <span class="oi oi-account-login" aria-hidden="true"></span> Login
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink class="nav-link" href="login">
+                            <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
+                        </NavLink>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <NavLink class="nav-link" href="register">
+                            <span class="oi oi-file" aria-hidden="true"></span> Register
+                        </NavLink>
+                    </li>
+                </ul>
+            </li>
+
+            <!--Add drop down menu with: About, Contact-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="oi oi-person" aria-hidden="true"></span> Help
+                </a>
+                <ul class="dropdown-menu list-unstyled" aria-labelledby="navbarDropdown2">
+                    <li>
+                        <NavLink class="nav-link" href="help">
+                            <span class="oi oi-question-mark" aria-hidden="true"></span> Help
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink class="nav-link" href="contact">
+                            <span class="oi oi-envelope-closed" aria-hidden="true"></span> Contact
+                        </NavLink>
+                    </li>
+                </ul>
+            </li>
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+
+        </div>
+
+        <article class="content px-4">
+            <ErrorBoundary>
+                @Body
+            </ErrorBoundary>
+        </article>
+    </main>
+</div>
+
+@code{
+    private bool _iconMenuActive { get; set; }
+    private string? IconMenuCssClass => _iconMenuActive ? "width: 80px;" : null;
+
+    protected void ToggleIconMenu(bool iconMenuActive)
+    {
+        _iconMenuActive = iconMenuActive;
+    }
+
+    string? email = null;
+    AppUser? user = null;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            email = null;
+            user = null;
+            var res = await storage.GetAsync<string>("email");
+            var res2 = await storage.GetAsync<AppUser>("user");
+            if (res.Success && res2.Success)
+            {
+                email = res.Value;
+                user = res2.Value;
+            }
+            StateHasChanged();
+        }
+    }
+    async Task Logout()
+    {
+        await storage.DeleteAsync("email");
+        await storage.DeleteAsync("user");
+        email = null;
+        user = null;
+        
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,25 @@
+﻿@using Microsoft.EntityFrameworkCore
+
+Reviews <span class="badge text-info badge-primary">[@Rating / 5]</span>
+    @for (int i = 1; i <= 5; i++)
+    {
+        @* if (i == Math.Round(Rating))
+        {
+            <span>&#xF587;</span> <!-- Filled star symbol -->
+        }
+        else  *@
+        if (i <= Rating)
+        {
+            <span>&starf;</span> <!-- Filled star symbol -->
+        }
+        else
+        {
+            <span>&star;</span> <!-- Empty star symbol -->
+        }
+    }
+
+
+@code {
+    [Parameter]
+    public double Rating { get; set; }
+}
