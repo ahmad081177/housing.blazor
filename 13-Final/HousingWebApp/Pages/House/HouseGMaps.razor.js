@@ -1,7 +1,9 @@
 ﻿var gmap;
 var infoWindow;
 
-(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({
+(g => {
+    var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
+})({
     key: gmap_key,
     v: "weekly",
     // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
@@ -13,13 +15,16 @@ export async function initMap(lat = -34.397, lon = 150.644, zoom = 10) {
     const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
         "marker",
     );
-    gmap = new Map(document.getElementById("gmap"), {
-        center: { lat: lat, lng: lon },
-        zoom: zoom,
-        mapId: "HousingWebApp",
-    });
+    let node = document.getElementById("gmap");
+    if (node) {
+        gmap = new Map(node, {
+            center: { lat: lat, lng: lon },
+            zoom: zoom,
+            mapId: "HousingWebApp",
+        });
 
-    infoWindow = new google.maps.InfoWindow();
+        infoWindow = new google.maps.InfoWindow();
+    }
 }
 
 export async function show_houses(houses) {
@@ -28,25 +33,27 @@ export async function show_houses(houses) {
         let house = houses[i];
         let address = house.address;
         var latLng = new google.maps.LatLng(address.lat, address.longt);
-        // var marker = new google.maps.Marker({
+
+        //var marker = new google.maps.Marker({
         //     position: latLng,
         //     map: gmap,
         //     title: house.info
         // });
 
-        const iconImage = document.createElement("img");
-        iconImage.src = "https://maps.gstatic.com/mapfiles/ms2/micons/homegardenbusiness.png";
+        //const iconImage = document.createElement("img");
+        //iconImage.src = "https://maps.gstatic.com/mapfiles/ms2/micons/homegardenbusiness.png";
         var marker = new google.maps.marker.AdvancedMarkerElement({
             position: latLng,
             map: gmap,
             title: house.info,
-            content: iconImage
+            // content: iconImage
         });
         var contentString = `<div id="content info-window">
             <h2>${house.info}</h2>
             <hr/>
-            <img src="${house.mainImage}" alt="House Image" style="width:100%; height: auto;">
+            <img src="${house.houseImages.mainImage}" alt="House Image" style="width:100%; height: 200px;">
             <hr/>
+            <p><strong>${house.price}$ for ${house.sqrRoot} </strong></p>
             <a href="/house/${house.id}" class="btn btn-primary">Details</a>
         </div>`;
 
@@ -54,7 +61,7 @@ export async function show_houses(houses) {
     }
 }
 export function makeInfoWindow(map, infowindow, contentString, marker) {
-    google.maps.event.addListener(marker, "click", function() {
+    google.maps.event.addListener(marker, "click", function () {
         infowindow.setContent(contentString);
         infowindow.open(map, marker);
     });

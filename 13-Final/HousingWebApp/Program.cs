@@ -12,16 +12,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+//Scoped is good for services that are used by the same client
+//For insatance, save cookies, session (state), db, etc
 builder.Services.AddDbContext<HousingDBContext>(
-    options=>options.UseSqlServer(
+    options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
-        .Replace("[DataDirectory]",Directory.GetCurrentDirectory())
+        .Replace("[DataDirectory]", Directory.GetCurrentDirectory())
         )
     );
-
-//Scoped is good for services that are used by the same client
-//For insatance, save cookies, session (state), etc
-//builder.Services.AddScoped<ZZZ>();
+builder.Services.AddScoped<IDbTransactionService, DbTransactionService>();
+builder.Services.AddScoped<AppAuthService>();
 
 builder.Services.AddSingleton<EmailService>(); //On instance, at server level
 builder.Services.AddSingleton<AddressService>();

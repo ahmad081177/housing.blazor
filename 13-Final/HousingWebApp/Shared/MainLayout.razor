@@ -1,15 +1,19 @@
-﻿@using HousingWebApp.Models
-@inherits LayoutComponentBase
-@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
-@inject NavigationManager navigateTo
+﻿@inherits LayoutComponentBase
 
+@using HousingWebApp.Models
+@using HousingWebApp.Services
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+
+@inject NavigationManager navigateTo
+@inject AppAuthService authService
 @inject ProtectedLocalStorage storage
+
 <PageTitle>Housing Web App</PageTitle>
 
 <div class="page">
-    <div class="sidebar" style="@IconMenuCssClass width:22vh!important">
+    @* <div class="sidebar" style="@IconMenuCssClass width:22vh!important">
         <NavMenu ShowIconMenu="ToggleIconMenu"/>
-    </div>
+    </div> *@
 
     <main>
         <div class="top-row px-4">
@@ -48,7 +52,7 @@
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink class="nav-link" href="login">
+                        <NavLink class="nav-link" href="login" @onclick="Logout">
                             <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
                         </NavLink>
                     </li>
@@ -58,13 +62,21 @@
                             <span class="oi oi-file" aria-hidden="true"></span> Register
                         </NavLink>
                     </li>
+                    @* @if (user != null && user.IsAdmin){ *@
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <NavLink class="nav-link" href="admin/users">
+                                <span class="oi oi-list-rich" aria-hidden="true"></span> All Users
+                            </NavLink>
+                        </li>
+                    @* } *@
                 </ul>
             </li>
 
             <!--Add drop down menu with: About, Contact-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="oi oi-person" aria-hidden="true"></span> Help
+                    <span class="oi oi-info" aria-hidden="true"></span> Help
                 </a>
                 <ul class="dropdown-menu list-unstyled" aria-labelledby="navbarDropdown2">
                     <li>
@@ -100,30 +112,29 @@
         _iconMenuActive = iconMenuActive;
     }
 
-    string? email = null;
     AppUser? user = null;
-    
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            email = null;
-            user = null;
-            var res = await storage.GetAsync<string>("email");
-            var res2 = await storage.GetAsync<AppUser>("user");
-            if (res.Success && res2.Success)
-            {
-                email = res.Value;
-                user = res2.Value;
-            }
-            StateHasChanged();
-        }
-    }
+
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         var res = await storage.GetAsync<string>("email");
+    //         if (res.Success )
+    //         {
+    //             try
+    //             {
+    //                 user = await authService.GetUserAsync(res.Value);
+    //             }catch(Exception e){
+    //                 Console.WriteLine("WOWOWO");
+    //                 Console.WriteLine(e.Message);
+    //             }
+    //     }
+    //         StateHasChanged();
+    //     }
+    // }
     async Task Logout()
     {
         await storage.DeleteAsync("email");
-        await storage.DeleteAsync("user");
-        email = null;
         user = null;
         
         StateHasChanged();

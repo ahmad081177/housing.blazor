@@ -2,6 +2,7 @@
 @using HousingWebApp.Models
 @using HousingWebApp.ViewModels
 @using HousingWebApp.Services
+@using Microsoft.EntityFrameworkCore
 @inject HousingDBContext db
 @inject NavigationManager navigateTo
 @inject EmailService emailService
@@ -108,10 +109,12 @@ else
         user.Address.Lat = model.Address.Lat;
         user.Address.Longt = model.Address.Longt;
     }
-    async Task RegisterUser()
+    public async Task RegisterUser()
     {
         //check if user exists by email
-        var temp = db.AppUsers.Where(u => u.Email == model.Email).FirstOrDefault();
+        var temp = await db.AppUsers
+        .Where(u => u.Email == model.Email)
+        .FirstOrDefaultAsync();
         if (temp == null)
         {
             //goto DB and try register...

@@ -1,6 +1,112 @@
 ﻿@page "/house/list"
-<h3>Coming Soon.</h3>
+
+@using HousingWebApp.Models
+@using HousingWebApp.Services
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Microsoft.EntityFrameworkCore
+@using HousingWebApp.Pages.Components
+
+@inherits AuthComponent
+
+@inject IDbTransactionService TransactionService
+@inject HousingDBContext db
+@inject ProtectedLocalStorage storage
+@inject NavigationManager navigateTo
+
+<PageTitle>Houses</PageTitle>
+<h3>List All Houses</h3>
+
+<div class="search">
+    <input @bind="searchTerm" placeholder="Search by property...">
+    <button @onclick="Search">Search</button>
+</div>
+
+@if (houses != null && houses.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Info</th>
+                <th>Price</th>
+                <th>Square Root</th>
+                <th>Image</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var house in houses)
+            {
+                <tr>
+                    <td>@house.Id</td>
+                    <td>@house.Info</td>
+                    <td>@house.Price</td>
+                    <td>@house.SqrRoot</td>
+                    <td><img src="@house.HouseImages.MainImage" style="max-width: 100px; max-height: 100px;" /></td>
+                    <td>@house.Address.Street, @house.Address.City, @house.Address.Country</td>
+                    <td>
+                        <button @onclick="() => OpenGMaps(house.Id)">Go to Map</button>
+                        <button @onclick="() => OpenDetails(house.Id)">Details</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No houses found.</p>
+}
 
 @code {
+    private List<House>? houses;
+    private string searchTerm = "";
 
+    //protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender&& houses==null){
+            houses = new();
+            await LoadHousesAsync();
+            StateHasChanged();
+        }
+    }
+
+    private async Task LoadHousesAsync()
+    {
+         //await TransactionService.ExecuteInTransactionAsync(async () =>
+        // {
+            houses = await db.Houses.Include(h => h.Address)
+            .Include(h => h.AppUser)
+            .Include(h => h.HouseImages)
+            .Include(h => h.HouseDetails)
+            .ToListAsync();
+        //});
+    }
+
+    private async Task Search()
+    {
+        // if (!string.IsNullOrWhiteSpace(searchTerm))
+        // {
+        //     houses = await HttpClient.GetFromJsonAsync<List<House>>($"api/houses/search/{searchTerm}");
+        // }
+        // else
+        // {
+        //     await LoadHouses();
+        // }
+    }
+
+    private void OpenGMaps(int houseId)
+    {
+        // Navigate to GMapsComponent with houseId
+        navigateTo.NavigateTo($"house/gmap/{houseId}");
+    }
+
+    private void OpenDetails(int houseId)
+    {
+        // Navigate to HouseDetails with houseId
+        navigateTo.NavigateTo($"/house/{houseId}");
+    }
 }

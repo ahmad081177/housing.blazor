@@ -2,6 +2,10 @@
 @using HousingWebApp.Models
 @using HousingWebApp.Services
 @using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+
+@inherits AuthComponent
+
+@inject IDbTransactionService TransactionService
 @inject HousingDBContext db
 @inject NavigationManager navigateTo
 @inject AddressService addressService
@@ -16,7 +20,7 @@
 }
 else
 {
-    <EditForm Model="@model" OnValidSubmit="SaveHouse">
+    <EditForm Model="@model" OnValidSubmit="OnSaveHouse">
         <DataAnnotationsValidator />
         <ValidationSummary />
         @if (error != null && error.Length > 0)
@@ -75,52 +79,54 @@ else
 @code {
     House? model = null;
     string error = "";
-    List<string> images = null;
+    List<string>? images = null;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(firstRender)
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender && LoggedInUser!=null)
         {
-            var user = await storage.GetAsync<AppUser>("user");
-            if(user.Success)
-            {
-                model = new House();
-                model.AppUserId = user.Value.Id;
-                images = new();
-                StateHasChanged();
-            }
-            else
-            {
-                navigateTo.NavigateTo("/login", true);
-            }
+            model = new House();
+            model.AppUserId = LoggedInUser.Id;
+            images = new();
+            StateHasChanged();
         }
-        base.OnAfterRender(firstRender);
+
     }
     async Task UpdateAddress()
     {
         //convert address to longt and lat
-        var r = await addressService.ConvertAddress(model.Address);
+        var r = await addressService.ConvertGAddress(model.Address);
         if (r != null)
         {
             model.Address.Lat = r.Item1;
             model.Address.Longt = r.Item2;
         }
     }
-    async Task SaveHouse()
+    async Task OnSaveHouse()
     {
         if(Validate())
         {
-            await UpdateAddress();
-            //save images
-            if(images!=null&& images.Count>0)
-                model.HouseImages.Base64Images = images;
-            db.Houses.Add(model);
-            await db.SaveChangesAsync();
+            await SaveHouseAsync();
             navigateTo.NavigateTo("/", true);
         }
         else
         {
             StateHasChanged();
         }
+    }
+    async Task SaveHouseAsync()
+    {
+        await UpdateAddress();
+        //save images
+        if (images != null && images.Count > 0)
+            model.HouseImages.Base64Images = images;
+
+       // await TransactionService.ExecuteInTransactionAsync(async () =>
+       // {
+            db.Houses.Add(model);
+            await db.SaveChangesAsync();
+      //  });
     }
     bool Validate()
     {

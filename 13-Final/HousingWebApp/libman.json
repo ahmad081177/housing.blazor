@@ -2,18 +2,8 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
-    {
-      "library": "leaflet@1.9.4",
-      "destination": "wwwroot/lib/leaflet/"
-    },
-    {
-      "library": "leaflet-extra-markers@1.2.2",
-      "destination": "wwwroot/lib/leaflet-extra-markers/"
-    },
-    {
-      "library": "material-ui@4.12.4",
-      "destination": "wwwroot/lib/material-ui/"
-    },
+    
+    
     {
       "library": "bootstrap@5.3.3",
       "destination": "wwwroot/bootstrap/"

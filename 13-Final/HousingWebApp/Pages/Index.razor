@@ -1,44 +1,44 @@
 ﻿@page "/"
 @using HousingWebApp.Models
+@using HousingWebApp.Services
 @using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 @inject NavigationManager navigateTo
-
 @inject ProtectedLocalStorage storage
+@inject AppAuthService authService
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
-@if (email != null)
+@if (user != null)
 {
-    <p>Welcome @email to Housing app.</p>
+    <p>Welcome @user.FirstName , @user.LastName to Housing app.</p>
 }
 else{
     <p>Welcome to Housing app.</p>
 }
 
-@if (user != null)
-{
-    <p>Welcome @user.FirstName , @user.LastName to Housing app.</p>
-}
-
-
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{
-    string? email = null;
     AppUser? user = null;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(firstRender)
+        if (firstRender)
         {
             var res = await storage.GetAsync<string>("email");
-            var res2 = await storage.GetAsync<AppUser>("user");
-            if(res.Success && res2.Success)
+            if (res.Success)
             {
-                email = res.Value;
-                user = res2.Value;
-                StateHasChanged();
+                try
+                {
+                    user = await authService.GetUserAsync(res.Value);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("MOMOMO");
+                    Console.WriteLine(e.Message);
+                }
             }
+            StateHasChanged();
         }
     }
 }

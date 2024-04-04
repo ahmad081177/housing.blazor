@@ -22,6 +22,7 @@ namespace HousingWebApp.Models
         //Prefered to be in separate table
         public bool IsAdmin { get; set; } = false;
 
+        public bool IsBlocked { get; set; } = false;
         public int AddressId { get; set; }
 
         [ForeignKey("AddressId")]

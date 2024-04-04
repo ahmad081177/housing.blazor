@@ -1,14 +1,17 @@
 ﻿@using HousingWebApp.Models
+@using HousingWebApp.Services
 @using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
-@inject NavigationManager navigateTo
 
+@inject NavigationManager navigateTo
+@inject AppAuthService authService
 @inject ProtectedLocalStorage storage
+
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid" @onclick="ToggleIconMenu">
         <span class="oi oi-monitor" style="color:white;" aria-hidden="true"></span>
         @if (!@IconMenuActive)
         {
-            <a class="navbar-brand" href="">Housing</a>
+            <a class="navbar-brand" >Housing</a>
         }
         @* <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
@@ -19,7 +22,7 @@
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <NavLink class="nav-link"  Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span>
                 @if (!@IconMenuActive)
                 {
@@ -28,7 +31,7 @@
             </NavLink>
         </div>
         <hr/>
-        @if (email != null)
+        @if (user != null)
         {
             <div class="nav-item px-3">
                 <NavLink class="nav-link" href="/login" @onclick="Logout">
@@ -112,20 +115,15 @@
         await ShowIconMenu.InvokeAsync(IconMenuActive);
     }
 
-    string? email = null;
     AppUser? user = null;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            email = null;
-            user = null;
             var res = await storage.GetAsync<string>("email");
-            var res2 = await storage.GetAsync<AppUser>("user");
-            if (res.Success && res2.Success)
+            if (res.Success)
             {
-                email = res.Value;
-                user = res2.Value;
+                user = await authService.GetUserAsync(res.Value);
             }
             StateHasChanged();
         }
@@ -133,8 +131,6 @@
     async Task Logout()
     {
         await storage.DeleteAsync("email");
-        await storage.DeleteAsync("user");
-        email = null;
         user = null;
         StateHasChanged();
     }
