@@ -14,45 +14,58 @@
 @inject NavigationManager navigateTo
 
 <PageTitle>Houses</PageTitle>
-<h3>List All Houses</h3>
-
-<div class="search">
-    <input @bind="searchTerm" placeholder="Search by property...">
-    <button @onclick="Search">Search</button>
-</div>
 
 @if (houses != null && houses.Any())
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Info</th>
-                <th>Price</th>
-                <th>Square Root</th>
-                <th>Image</th>
-                <th>Address</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var house in houses)
-            {
-                <tr>
-                    <td>@house.Id</td>
-                    <td>@house.Info</td>
-                    <td>@house.Price</td>
-                    <td>@house.SqrRoot</td>
-                    <td><img src="@house.HouseImages.MainImage" style="max-width: 100px; max-height: 100px;" /></td>
-                    <td>@house.Address.Street, @house.Address.City, @house.Address.Country</td>
-                    <td>
-                        <button @onclick="() => OpenGMaps(house.Id)">Go to Map</button>
-                        <button @onclick="() => OpenDetails(house.Id)">Details</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="container mt-5">
+        <h3 class="text-center">All Houses</h3>
+        <div class="row justify-content-center mb-3">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Filter users by house properties" @bind="filterText" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" @onclick="ClearFilterText">
+                            <i class="oi oi-x"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Info</th>
+                            <th>Price</th>
+                            <th>Square Root</th>
+                            <th>Image</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var house in FilteredHouses)
+                        {
+                            <tr>
+                                <td>@house.Id</td>
+                                <td>@house.Info</td>
+                                <td>@house.Price</td>
+                                <td>@house.SqrRoot</td>
+                                <td><img src="@house.HouseImages.MainImage" style="max-width: 100px; max-height: 100px;" /></td>
+                                <td>@house.Address.Street, @house.Address.City, @house.Address.Country</td>
+                                <td>
+                                    <button @onclick="() => OpenGMaps(house.Id)">Go to Map</button>
+                                    <button @onclick="() => OpenDetails(house.Id)">Details</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 }
 else
 {
@@ -61,13 +74,37 @@ else
 
 @code {
     private List<House>? houses;
-    private string searchTerm = "";
+    private string filterText = "";
 
+    IEnumerable<House> FilteredHouses
+    {
+        get
+        {
+            if (string.IsNullOrWhiteSpace(filterText))
+            {
+                return houses;
+            }
+            else
+            {
+                return houses.Where(u =>
+                    u.Info.ToLower().Contains(filterText.ToLower()) ||
+                    u.Address.ToString().ToLower().Contains(filterText.ToLower()) ||
+                    u.AppUser.FirstName.ToLower().Contains(filterText.ToLower()) ||
+                    u.AppUser.LastName.ToLower().Contains(filterText.ToLower())
+                );
+            }
+        }
+    }
+    void ClearFilterText()
+    {
+        filterText = "";
+    }
     //protected override async Task OnInitializedAsync()
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        if (firstRender&& houses==null){
+        if (firstRender && houses == null)
+        {
             houses = new();
             await LoadHousesAsync();
             StateHasChanged();
@@ -76,26 +113,14 @@ else
 
     private async Task LoadHousesAsync()
     {
-         //await TransactionService.ExecuteInTransactionAsync(async () =>
+        //await TransactionService.ExecuteInTransactionAsync(async () =>
         // {
-            houses = await db.Houses.Include(h => h.Address)
-            .Include(h => h.AppUser)
-            .Include(h => h.HouseImages)
-            .Include(h => h.HouseDetails)
-            .ToListAsync();
+        houses = await db.Houses.Include(h => h.Address)
+        .Include(h => h.AppUser)
+        .Include(h => h.HouseImages)
+        .Include(h => h.HouseDetails)
+        .ToListAsync();
         //});
-    }
-
-    private async Task Search()
-    {
-        // if (!string.IsNullOrWhiteSpace(searchTerm))
-        // {
-        //     houses = await HttpClient.GetFromJsonAsync<List<House>>($"api/houses/search/{searchTerm}");
-        // }
-        // else
-        // {
-        //     await LoadHouses();
-        // }
     }
 
     private void OpenGMaps(int houseId)

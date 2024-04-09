@@ -9,22 +9,40 @@
 
 <PageTitle>Login to Housing</PageTitle>
 
-<h3>Welcome to Login to Housing App</h3>
-<form>
-    <div class="container">
-        <label for="uname"><b>Email:</b></label>
-        <input type="email" placeholder="user@gmail.com" name="uname" @bind="email" required />
-        <br />
-        <label for="password"><b>Password:</b></label>
-        <input type="password" placeholder="****" name="password" @bind="password" required />
-        <br />
-        <button type="button" @onclick="Login">Login</button>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title text-center">Welcome to Housing App</h3>
+                </div>
+                <div class="card-body">
+                    <form @onsubmit="@Login">
+                        <div class="mb-3">
+                            <label for="email" class="form-label"><b>Email:</b></label>
+                            <input type="email" class="form-control" placeholder="user@gmail.com" @bind="email" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label"><b>Password:</b></label>
+                            <input type="password" class="form-control" placeholder="****" @bind="password" required />
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary mx-5"> Login </button>
+                        </div>
+                        <div class="text-center my-3">
+                            <a href="/register" class="btn btn-link">Register</a>
+                            <a href="/user/password/reset" class="btn btn-link">Forgot Password</a>
+                        </div>
+                        @if (error.Length > 0)
+                        {
+                            <div class="text-danger text-center mt-3">@error</div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    @if (error.Length > 0)
-    {
-        <div class="text-danger">@error</div>
-    }
-</form>
+</div>
 @code {
     string email { get; set; }
     string password { get; set; }

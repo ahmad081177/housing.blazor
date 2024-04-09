@@ -11,8 +11,6 @@
 @inject ProtectedLocalStorage storage
 @inject NavigationManager navigateTo
 
-<h3>User Management (Admin Only)</h3>
-
 @if(!string.IsNullOrEmpty(error))
 {
     <div class="alert alert-danger">@error</div>
@@ -23,45 +21,86 @@ else if (users == null)
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Is Admin</th>
-                <th>Is Blocked</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in users)
-            {
-                <tr>
-                    <td>@user.Id</td>
-                    <td>@user.FirstName</td>
-                    <td>@user.LastName</td>
-                    <td>@user.Email</td>
-                    <td>@user.Phone</td>
-                    <td>@(user.IsAdmin ? "Yes" : "No")</td>
-                    <td>@(user.IsBlocked ? "Yes" : "No")</td>
-                    <td>
-                        <button @onclick="() => ToggleBlockUserAsync(user)">
-                            @(user.IsBlocked ? "Unblock" : "Block")
+    <div class="container mt-5">
+        <h3 class="text-center">All Users</h3>
+        <div class="row justify-content-center mb-3">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Filter users by first name, last name, or email" @bind="filterText" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" @onclick="ClearFilterText">
+                            <i class="oi oi-x"></i>
                         </button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Is Admin</th>
+                            <th>Is Blocked</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in FilteredUsers)
+                        {
+                            <tr>
+                                <td>@user.Id</td>
+                                <td>@user.FirstName</td>
+                                <td>@user.LastName</td>
+                                <td>@user.Email</td>
+                                <td>@user.Phone</td>
+                                <td>@(user.IsAdmin ? "Yes" : "No")</td>
+                                <td>@(user.IsBlocked ? "Yes" : "No")</td>
+                                <td>
+                                    <button @onclick="() => ToggleBlockUserAsync(user)" class="btn btn-sm @(user.IsBlocked ? "btn-success" : "btn-danger")">
+                                        @(user.IsBlocked ? "Unblock" : "Block")
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 }
 
 @code {
     private List<AppUser>? users;
     string error = "";
-
+    string filterText = "";
+    IEnumerable<AppUser> FilteredUsers
+    {
+        get
+        {
+            if (string.IsNullOrWhiteSpace(filterText))
+            {
+                return users;
+            }
+            else
+            {
+                return users.Where(u =>
+                    u.FirstName.ToLower().Contains(filterText.ToLower()) ||
+                    u.LastName.ToLower().Contains(filterText.ToLower()) ||
+                    u.Email.ToLower().Contains(filterText.ToLower())
+                );
+            }
+        }
+    }
+    void ClearFilterText()
+    {
+        filterText = "";
+    }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);

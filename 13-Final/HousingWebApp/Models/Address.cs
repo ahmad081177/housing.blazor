@@ -14,5 +14,9 @@ namespace HousingWebApp.Models
         public string? Street { get; set; }
         public double Longt { get; set; }
         public double Lat { get; set; }
+        public override string ToString()
+        {
+            return Street + ", " + City + ", " + Country;
+        }
     }
 }

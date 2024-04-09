@@ -3,107 +3,16 @@
   "WorkspaceRootPath": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\house\\housegmaps.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\house\\housegmaps.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\services\\appauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:services\\appauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\services\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:services\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\house\\newhousecomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\house\\newhousecomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\house\\houseslistcomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\house\\houseslistcomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\shared\\authcomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:shared\\authcomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\house\\housedetails.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\house\\housedetails.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\user\\logincomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\user\\logincomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\user\\alluserscomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\user\\alluserscomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\components\\reviewscomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\components\\reviewscomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\components\\ratingcomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\components\\ratingcomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\user\\registercomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\user\\registercomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\shared\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:shared\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\shared\\surveyprompt.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:shared\\surveyprompt.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\components\\imagesslidercomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\components\\imagesslidercomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\models\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:models\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\models\\house.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:models\\house.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{999D7137-458D-4651-9C31-68FBA8489503}|..\\TestMe\\TestMe.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\testme\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\shared\\navmenu.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:shared\\navmenu.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\MainLayout_Copy.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Shared\\MainLayout_Copy.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -118,338 +27,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-04T08:12:31.274Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AppAuthService.cs",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\AppAuthService.cs",
-              "RelativeDocumentMoniker": "Services\\AppAuthService.cs",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\AppAuthService.cs",
-              "RelativeToolTip": "Services\\AppAuthService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-03T15:10:40.304Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "HouseDetails.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\House\\HouseDetails.razor",
-              "RelativeDocumentMoniker": "Pages\\House\\HouseDetails.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\House\\HouseDetails.razor",
-              "RelativeToolTip": "Pages\\House\\HouseDetails.razor",
-              "ViewState": "AQIAAD4AAAAAAAAAAAAswEsAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T20:48:43.952Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HouseGMaps.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\House\\HouseGMaps.razor",
-              "RelativeDocumentMoniker": "Pages\\House\\HouseGMaps.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\House\\HouseGMaps.razor",
-              "RelativeToolTip": "Pages\\House\\HouseGMaps.razor",
-              "ViewState": "AQIAADAAAAAAAAAAAAAAABgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-01T20:30:55.895Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ImageService.cs",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\ImageService.cs",
-              "RelativeDocumentMoniker": "Services\\ImageService.cs",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\ImageService.cs",
-              "RelativeToolTip": "Services\\ImageService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T06:30:57.974Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AuthComponent.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\AuthComponent.razor",
-              "RelativeDocumentMoniker": "Shared\\AuthComponent.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\AuthComponent.razor",
-              "RelativeToolTip": "Shared\\AuthComponent.razor",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAACIAAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-03T09:35:20.58Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "HousesListComponent.razor",
               "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\House\\HousesListComponent.razor",
               "RelativeDocumentMoniker": "Pages\\House\\HousesListComponent.razor",
               "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\House\\HousesListComponent.razor",
               "RelativeToolTip": "Pages\\House\\HousesListComponent.razor",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAswGcAAAA3AAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABgAAABpAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-03T14:39:23.691Z",
+              "WhenOpened": "2024-04-09T15:26:56.77Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NewHouseComponent.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\House\\NewHouseComponent.razor",
-              "RelativeDocumentMoniker": "Pages\\House\\NewHouseComponent.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\House\\NewHouseComponent.razor",
-              "RelativeToolTip": "Pages\\House\\NewHouseComponent.razor",
-              "ViewState": "AQIAAJgAAAAAAAAAAAAlwF8AAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-01T07:04:01.888Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAlwBYAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-02T16:02:45.334Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "LoginComponent.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\User\\LoginComponent.razor",
-              "RelativeDocumentMoniker": "Pages\\User\\LoginComponent.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\User\\LoginComponent.razor",
-              "RelativeToolTip": "Pages\\User\\LoginComponent.razor",
-              "ViewState": "AQIAABYAAAAAAAAAAAAlwCkAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T15:20:52.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AllUsersComponent.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\User\\AllUsersComponent.razor",
-              "RelativeDocumentMoniker": "Pages\\User\\AllUsersComponent.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\User\\AllUsersComponent.razor",
-              "RelativeToolTip": "Pages\\User\\AllUsersComponent.razor",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAlwGAAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T15:22:08.522Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ReviewsComponent.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\Components\\ReviewsComponent.razor",
-              "RelativeDocumentMoniker": "Pages\\Components\\ReviewsComponent.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\Components\\ReviewsComponent.razor",
-              "RelativeToolTip": "Pages\\Components\\ReviewsComponent.razor",
-              "ViewState": "AQIAAI8AAAAAAAAAAAAlwJ8AAAAGAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-03T14:33:06.546Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "RatingComponent.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\Components\\RatingComponent.razor",
-              "RelativeDocumentMoniker": "Pages\\Components\\RatingComponent.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\Components\\RatingComponent.razor",
-              "RelativeToolTip": "Pages\\Components\\RatingComponent.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T21:00:12.711Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "RegisterComponent.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\User\\RegisterComponent.razor",
-              "RelativeDocumentMoniker": "Pages\\User\\RegisterComponent.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\User\\RegisterComponent.razor",
-              "RelativeToolTip": "Pages\\User\\RegisterComponent.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHIAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T15:25:46.32Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "MainLayout.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\MainLayout.razor",
-              "RelativeDocumentMoniker": "Shared\\MainLayout.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\MainLayout.razor",
-              "RelativeToolTip": "Shared\\MainLayout.razor",
-              "ViewState": "AQIAAH4AAAAAAAAAAAArwIgAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-03T13:46:24.756Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "NavMenu.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\NavMenu.razor",
-              "RelativeDocumentMoniker": "Shared\\NavMenu.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\NavMenu.razor",
-              "RelativeToolTip": "Shared\\NavMenu.razor",
-              "ViewState": "AQIAAHoAAAAAAAAAAAArwIQAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-01T20:15:49.836Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Index.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\Index.razor",
-              "RelativeDocumentMoniker": "Pages\\Index.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\Index.razor",
-              "RelativeToolTip": "Pages\\Index.razor",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAACQAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T21:00:45.557Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "SurveyPrompt.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\SurveyPrompt.razor",
-              "RelativeDocumentMoniker": "Shared\\SurveyPrompt.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\SurveyPrompt.razor",
-              "RelativeToolTip": "Shared\\SurveyPrompt.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T15:55:47.174Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "ImagesSliderComponent.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\Components\\ImagesSliderComponent.razor",
-              "RelativeDocumentMoniker": "Pages\\Components\\ImagesSliderComponent.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\Components\\ImagesSliderComponent.razor",
-              "RelativeToolTip": "Pages\\Components\\ImagesSliderComponent.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-01T08:27:36.58Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "AppUser.cs",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\AppUser.cs",
-              "RelativeDocumentMoniker": "Models\\AppUser.cs",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\AppUser.cs",
-              "RelativeToolTip": "Models\\AppUser.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAIwBQAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T07:25:18.103Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 2,
               "Title": "Address.cs",
               "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\Address.cs",
               "RelativeDocumentMoniker": "Models\\Address.cs",
               "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\Address.cs",
               "RelativeToolTip": "Models\\Address.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAIBJwAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-02T15:18:37.714Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-09T15:20:47.823Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\TestMe\\Program.cs",
-              "RelativeDocumentMoniker": "..\\TestMe\\Program.cs",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\TestMe\\Program.cs",
-              "RelativeToolTip": "..\\TestMe\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T13:00:01.665Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "House.cs",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\House.cs",
-              "RelativeDocumentMoniker": "Models\\House.cs",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\House.cs",
-              "RelativeToolTip": "Models\\House.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAqwCkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T07:25:55.016Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "MainLayout_Copy.razor",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\MainLayout_Copy.razor",
-              "RelativeDocumentMoniker": "Shared\\MainLayout_Copy.razor",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\MainLayout_Copy.razor",
-              "RelativeToolTip": "Shared\\MainLayout_Copy.razor",
+              "DocumentIndex": 1,
+              "Title": "AllUsersComponent.razor",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\User\\AllUsersComponent.razor",
+              "RelativeDocumentMoniker": "Pages\\User\\AllUsersComponent.razor",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\User\\AllUsersComponent.razor",
+              "RelativeToolTip": "Pages\\User\\AllUsersComponent.razor",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAlwGYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-01T11:30:49.722Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "site.css",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\wwwroot\\css\\site.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\wwwroot\\css\\site.css",
-              "RelativeToolTip": "wwwroot\\css\\site.css",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAPAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-04-01T09:50:04.928Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "NavMenu.razor.css",
-              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\NavMenu.razor.css",
-              "RelativeDocumentMoniker": "Shared\\NavMenu.razor.css",
-              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\NavMenu.razor.css",
-              "RelativeToolTip": "Shared\\NavMenu.razor.css",
-              "ViewState": "AQIAADoAAAAAAAAAAAAiwFEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-04-01T10:43:03.804Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-09T15:13:39.54Z"
             }
           ]
         }
