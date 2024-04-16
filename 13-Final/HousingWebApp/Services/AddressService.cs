@@ -12,12 +12,12 @@ namespace HousingWebApp.Services
         {
             this.configuration = configuration;
         }
-        private string? GetGKey()
+        public string? GetGKey()
         {
             var section = configuration.GetSection("AppSettings");
             if(section != null)
             {
-                return section["GKey"];
+                return section["Google:GKey"];
             }
             return null;
         }

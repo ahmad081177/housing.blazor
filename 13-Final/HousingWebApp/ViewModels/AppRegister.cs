@@ -24,6 +24,9 @@ namespace HousingWebApp.ViewModels
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
+
+        public string ProfileImage { get; set; }
+        public char Gender { get; set; }
         public string Phone { get; set; }
         public Address Address { get; set; } = new Address();
     }

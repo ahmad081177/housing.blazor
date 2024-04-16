@@ -9,6 +9,7 @@
 @inject HousingDBContext db
 @inject IDbTransactionService TransactionService
 @inject IConfiguration configuration
+@inject AddressService addressService
 
 <PageTitle>GMap</PageTitle>
 <h3>House GMaps</h3>
@@ -50,7 +51,7 @@
         await base.OnAfterRenderAsync(firstRender);
         if (firstRender)
         {
-            string? key = GetGKey();
+            string? key = addressService.GetGKey();
             if (string.IsNullOrEmpty(key))
             {
                 throw new Exception("Google Maps API Key is missing.");
@@ -94,14 +95,5 @@
         if(Houses!=null && Houses.Any() && module!=null){
             await module.InvokeVoidAsync("show_houses", Houses);
         }
-    }
-    private string? GetGKey()
-    {
-        var section = configuration.GetSection("AppSettings");
-        if (section != null)
-        {
-            return section["GKey"];
-        }
-        return null;
     }
 }

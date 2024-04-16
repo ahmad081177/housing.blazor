@@ -16,7 +16,20 @@ namespace HousingWebApp.Models
         public double Lat { get; set; }
         public override string ToString()
         {
-            return Street + ", " + City + ", " + Country;
+            string s = "";
+            if (!string.IsNullOrWhiteSpace(Street))
+            {
+                s += Street + ", ";
+            }
+            if (!string.IsNullOrWhiteSpace(City))
+            {
+                s += City + ", ";
+            }
+            if (!string.IsNullOrWhiteSpace(Country))
+            {
+                s += Country;
+            }
+            return s;
         }
     }
 }

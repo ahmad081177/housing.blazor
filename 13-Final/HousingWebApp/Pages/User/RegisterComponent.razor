@@ -11,7 +11,7 @@
 <PageTitle>Register to Housing</PageTitle>
 @if (model == null)
 {
-    <p>Loading...</p>
+    <HousingWebApp.Pages.Components.DefaultProgressBarComponent/>
 }
 else
 {
@@ -77,6 +77,22 @@ else
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="mimage">Profile Image:</label>
+                                        <InputFile id="mimage" class="form-control" title="House Image" accept=".png,.jpg" OnChange="HandleProfileImage" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="gender">Gender:</label>
+                                    <select id="gender" class="form-control" @bind="@model.Gender">
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                        <option value="O">Other</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label for="phone">Phone:</label>
@@ -122,6 +138,29 @@ else
             StateHasChanged();
         }
     }
+    async Task HandleProfileImage(InputFileChangeEventArgs e)
+    {
+        var f = e.GetMultipleFiles().FirstOrDefault();
+        string? str= await ConvertUploadImage(f);
+        if (!string.IsNullOrEmpty(str))
+        {
+            model.ProfileImage = str;
+        }
+    }
+    async Task<string?> ConvertUploadImage(IBrowserFile? f)
+    {
+        if (f != null)
+        {
+            var f2 = await f.RequestImageFileAsync(f.ContentType, 300, 300);
+            var ms = new MemoryStream();
+            await f2.OpenReadStream().CopyToAsync(ms);
+            string s = Convert.ToBase64String(ms.ToArray());
+            s = $"data:{f.ContentType};base64,{s}";
+
+            return s;
+        }
+        return null;
+    }
     async Task UpdateUserAddress(AppUser user)
     {
         //convert address to longt and lat
@@ -152,6 +191,8 @@ else
             user.LastName = model.LastName;
             user.Phone = model.Phone;
             user.Password = model.Password;
+            user.ProfileImage = model.ProfileImage;
+            user.Gender = model.Gender;
             user.IsAdmin = false;
 
             await UpdateUserAddress(user);
@@ -171,6 +212,5 @@ else
         {
             //Error message
         }
-
     }
 }

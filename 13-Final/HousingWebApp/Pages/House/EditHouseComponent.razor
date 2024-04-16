@@ -1,0 +1,296 @@
+﻿@page "/house/edit/{HouseId:int}"
+@using HousingWebApp.Models
+@using HousingWebApp.Services
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Microsoft.EntityFrameworkCore
+@using HousingWebApp.Pages.Components
+
+@inherits AuthComponent
+
+@inject IDbTransactionService TransactionService
+@inject HousingDBContext db
+@inject NavigationManager navigateTo
+@inject AddressService addressService
+@inject ProtectedLocalStorage storage
+@inject IJSRuntime JS
+
+<PageTitle>Edit House</PageTitle>
+
+@if (model == null)
+{
+    <DefaultProgressBarComponent/>
+}
+else
+{
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title">Edit House</h3>
+            </div>
+            <div class="card-body">
+                <FormErrorComponent Error="@error" />
+                <div class="tab">
+                    <button class="tablinks active" onclick="openTab(event, 'basic')">Basic Details <span class="arrow-right"></span></button>
+                    <button class="tablinks" onclick="openTab(event, 'features')">Additional Features <span class="arrow-right"></span></button>
+                    <button class="tablinks" onclick="openTab(event, 'address')">Address <span class="arrow-right"></span></button>
+                </div>
+
+                <div id="basic" class="tabcontent" style="display:block">
+                    <form class="needs-validation" @onsubmit="OnSaveHouse">
+                        <div class="form-group">
+                            <label for="info">Information:</label>
+                            <InputText id="info" class="form-control" @bind-Value="model.Info" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mimage" class="required">Main Image:</label>
+                            <InputFile id="mimage" class="form-control" title="House Image" accept=".png,.jpg" OnChange="HandleMainImageChange" />
+                            @if (!string.IsNullOrEmpty(model.HouseImages.MainImage))
+                            {
+                                <img src="@model.HouseImages.MainImage" alt="House Image" style="width: 150px; height: 100px;" />
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="mimages">More Images:</label>
+                            <InputFile id="mimages" class="form-control" title="House Images" multiple accept=".png,.jpg" OnChange="HandleMoreImagesChange" />
+                            @if (model.HouseImages.Base64Images?.Any() ?? false)
+                            {
+                                <div>
+                                    @foreach (var image in model.HouseImages.Base64Images)
+                                    {
+                                        <img src="@image" alt="House Image" style="width: 100px; height: 80px; margin: 5px;" />
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="price" class="required">Price:</label>
+                            <input type="number" required id="price" class="form-control" @bind="model.Price" />
+                        </div>
+                        <div class="form-group">
+                            <label for="sr" class="required">Square Root:</label>
+                            <input type="number" required id="sr" class="form-control" @bind="model.SqrRoot" />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+                    </form>
+                </div>
+                <div id="features" class="tabcontent" style="display:none">
+                    <form class="needs-validation" @onsubmit="OnSaveHouse">
+                        <div class="form-group">
+                            <label for="year">Year:</label>
+                            <input type="number" required id="year" class="form-control" @bind="model.HouseDetails.Year" />
+                        </div>
+                        <div class="form-group">
+                            <label for="hasSP">Has Swimming Pool:</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="hasSP" class="toggle-input" @bind="model.HouseDetails.HasSwimmingPool" />
+                                <label for="hasSP" class="toggle-label"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="floor">Number of Floors:</label>
+                            <input type="number" required id="floor" class="form-control" @bind="model.HouseDetails.Floor" />
+                        </div>
+                        <div class="form-group">
+                            <label for="bathrooms">Number of Bathrooms:</label>
+                            <input type="number" required id="bathrooms" class="form-control" @bind="model.HouseDetails.Bathrooms" />
+                        </div>
+                        <div class="form-group">
+                            <label for="bedrooms">Number of Bedrooms:</label>
+                            <input type="number" required id="bedrooms" class="form-control" @bind="model.HouseDetails.Bedrooms" />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+                    </form>
+                </div>
+
+                <div id="address" class="tabcontent" style="display:none">
+                    <form class="needs-validation" @onsubmit="OnSaveHouse">
+                        <div class="form-group">
+                            <label for="address1" class="required">Country:</label>
+                            <InputText id="address1" class="form-control" @bind-Value="model.Address.Country" />
+                        </div>
+                        <div class="form-group">
+                            <label for="address2" class="required">City:</label>
+                            <InputText id="address3" class="form-control" @bind-Value="model.Address.City" />
+                        </div>
+                        <div class="form-group">
+                            <label for="address3">Street:</label>
+                            <InputText id="address3" class="form-control" @bind-Value="model.Address.Street" />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int HouseId { get; set; }
+
+    private House? model = null;
+    private AppUser? owner = null;
+    private string error = "";
+    private List<string>? images = null;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender && LoggedInUser != null)
+        {
+            model = await db.Houses
+            .Include(h => h.Address)
+            .Include(h => h.HouseDetails)
+            .Include(h => h.HouseImages)
+            .FirstOrDefaultAsync(h => h.Id == HouseId);
+
+            if (model == null)
+            {
+                navigateTo.NavigateTo("/notfound", true);
+                return;
+            }
+            //load owner user
+            owner = await db.AppUsers.FirstOrDefaultAsync(u => u.Id == model.AppUserId);
+            if (!LoggedInUser.IsAdmin && LoggedInUser.Id != owner?.Id)
+            {
+                navigateTo.NavigateTo("/unauthorized", true);
+                return;
+            }
+            images = model?.HouseImages.Base64Images?.ToList(); // Copy existing images
+
+            StateHasChanged();
+        }
+    }
+    async Task UpdateAddress()
+    {
+        var r = await addressService.ConvertGAddress(model.Address);
+        if (r != null)
+        {
+            model.Address.Lat = r.Item1;
+            model.Address.Longt = r.Item2;
+        }
+    }
+
+    async Task OnSaveHouse()
+    {
+        if (Validate())
+        {
+            await SaveHouseAsync();
+            navigateTo.NavigateTo("/", true);
+        }
+        else
+        {
+            StateHasChanged();
+        }
+    }
+
+    async Task SaveHouseAsync()
+    {
+        await UpdateAddress();
+        // Save new main image if uploaded
+        if (newImage != null)
+        {
+            model.HouseImages.MainImage = await ConvertUploadImage(newImage);
+        }
+
+        // Save new additional images if uploaded
+        if (imagesToAdd != null && imagesToAdd.Count > 0)
+        {
+            foreach (var file in imagesToAdd)
+            {
+                string? str = await ConvertUploadImage(file);
+                if (!string.IsNullOrEmpty(str))
+                {
+                    images?.Add(str); // Update in-memory list
+                    model.HouseImages.Base64Images ??= new List<string>(); // Initialize if null
+                    model.HouseImages.Base64Images.Add(str);
+                }
+            }
+        }
+
+        model.HouseImages.Base64Images = images; // Update main list with potentially modified images
+
+        await TransactionService.ExecuteInTransactionAsync(async () =>
+        {
+            db.Houses.Update(model);
+            await db.SaveChangesAsync();
+        });
+    }
+
+    bool Validate()
+    {
+        //if(model!=null && model.Price<50)
+        if (model?.Price < 50)
+        {
+            error = "Price must be greater than 50";
+            return false;
+        }
+        if (model?.SqrRoot < 50)
+        {
+            error = "Square root must be greater than 50";
+            return false;
+        }
+        if (string.IsNullOrEmpty(model?.HouseImages.MainImage))
+        {
+            error = "Main Image is required";
+            return false;
+        }
+        if (model?.Address.Country.Length < 3)
+        {
+            error = "Country is invalid or empty";
+            return false;
+        }
+        if (model?.Address.City.Length < 3)
+        {
+            error = "City is invalid or empty";
+            return false;
+        }
+        return true;
+    }
+
+    // New image upload handling
+    private IBrowserFile newImage;
+    async Task HandleMainImageChange(InputFileChangeEventArgs e)
+    {
+        newImage = e.GetMultipleFiles().FirstOrDefault();
+    }
+
+    // Additional image upload handling
+    private List<IBrowserFile>? imagesToAdd;
+    async Task HandleMoreImagesChange(InputFileChangeEventArgs e)
+    {
+        imagesToAdd = e.GetMultipleFiles().ToList();
+    }
+
+    async Task<string?> ConvertUploadImage(IBrowserFile? f)
+    {
+        if (f != null)
+        {
+            var f2 = await f.RequestImageFileAsync(f.ContentType, 300, 300);
+            var ms = new MemoryStream();
+            await f2.OpenReadStream().CopyToAsync(ms);
+            string s = Convert.ToBase64String(ms.ToArray());
+            s = $"data:{f.ContentType};base64,{s}";
+
+            return s;
+        }
+        return null;
+    }
+}
+<script>
+    // Function to switch between tabs
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>

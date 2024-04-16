@@ -1,0 +1,10 @@
+﻿@using Microsoft.EntityFrameworkCore
+
+@if (!string.IsNullOrEmpty(Error))
+{
+    <div class="alert alert-danger text-center w-50 p-3 position-absolute top-10 start-50 translate-middle-x ">@Error</div>
+}
+@code{
+    [Parameter]
+    public string? Error { get; set; }
+}

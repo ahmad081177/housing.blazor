@@ -66,3 +66,11 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+
+/* Style for required fields */
+.required::after {
+    content: "*"; /* The asterisk character */
+    color: red; /* Color of the asterisk */
+    margin-right: 5px; /* Adjust spacing between asterisk and label text */
+}

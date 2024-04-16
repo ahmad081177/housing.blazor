@@ -15,7 +15,14 @@
 
 <PageTitle>Houses</PageTitle>
 
-@if (houses != null && houses.Any())
+@if(houses==null)
+{
+    <DefaultProgressBarComponent/>
+}
+else if(!houses.Any()){
+    <p>No houses found.</p>
+}
+else
 {
     <div class="container mt-5">
         <h3 class="text-center">All Houses</h3>
@@ -35,29 +42,36 @@
             <div class="col-lg-10">
                 <table class="table table-striped">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>ID</th>
                             <th>Info</th>
                             <th>Price</th>
                             <th>Square Root</th>
                             <th>Image</th>
                             <th>Address</th>
+                            <th>Owner</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var house in FilteredHouses)
                         {
-                            <tr>
+                            <tr class="text-center align-middle">
                                 <td>@house.Id</td>
                                 <td>@house.Info</td>
                                 <td>@house.Price</td>
                                 <td>@house.SqrRoot</td>
                                 <td><img src="@house.HouseImages.MainImage" style="max-width: 100px; max-height: 100px;" /></td>
-                                <td>@house.Address.Street, @house.Address.City, @house.Address.Country</td>
+                                <td>@house.Address.ToString()</td>
+                                <td><a href="mailto:@house.AppUser.Email">@house.AppUser.LastName, @house.AppUser.FirstName </a></td>
                                 <td>
                                     <button @onclick="() => OpenGMaps(house.Id)">Go to Map</button>
                                     <button @onclick="() => OpenDetails(house.Id)">Details</button>
+                                    @if(LoggedInUser.IsAdmin || house.AppUserId==LoggedInUser.Id)
+                                    {
+                                        <button @onclick="()=>OpenEditHouse(house.Id)">Edit</button>
+                                        @* <button>Delete</button> *@
+                                    }
                                 </td>
                             </tr>
                         }
@@ -67,10 +81,7 @@
         </div>
     </div>
 }
-else
-{
-    <p>No houses found.</p>
-}
+
 
 @code {
     private List<House>? houses;
@@ -133,5 +144,10 @@ else
     {
         // Navigate to HouseDetails with houseId
         navigateTo.NavigateTo($"/house/{houseId}");
+    }
+    private void OpenEditHouse(int houseId)
+    {
+        // Navigate to EditHouseComponent with houseId
+        navigateTo.NavigateTo($"/house/edit/{houseId}");
     }
 }

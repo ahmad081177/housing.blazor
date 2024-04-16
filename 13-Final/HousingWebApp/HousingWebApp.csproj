@@ -17,13 +17,6 @@
     <None Remove="wwwroot\lib\open-iconic\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Pages\House\NewHouseComponent.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Pages\House\NewHouseComponent.razor.css" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.16" />
@@ -41,6 +34,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\lib\" />
+    <Folder Include="wwwroot\resources\images\" />
     <Folder Include="wwwroot\storage\images\" />
   </ItemGroup>
 

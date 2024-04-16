@@ -18,6 +18,9 @@ namespace HousingWebApp.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; } = "";
+        [Column(TypeName = "varchar(max)")]
+        public string ? ProfileImage { get; set; }
+        public char Gender { get; set; } = 'M';
         public string? Phone { get; set; }
         //Prefered to be in separate table
         public bool IsAdmin { get; set; } = false;

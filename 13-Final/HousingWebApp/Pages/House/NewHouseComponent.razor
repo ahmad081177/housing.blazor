@@ -1,4 +1,4 @@
-﻿@page "/house/new/"
+﻿@page "/house/new2/"
 @using HousingWebApp.Models
 @using HousingWebApp.Services
 @using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
@@ -12,69 +12,68 @@
 @inject ProtectedLocalStorage storage
 
 <PageTitle>New House</PageTitle>
-
-<h3>Create New House</h3>
 @if (model == null)
 {
-    <p>Loading...</p>
+    <HousingWebApp.Pages.Components.DefaultProgressBarComponent />
 }
 else
 {
-    <EditForm Model="@model" OnValidSubmit="OnSaveHouse">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-        @if (error != null && error.Length > 0)
-        {
-            <div class="alert alert-danger">@error</div>
-        }
-        <div class="form-group">
-            <label for="info">Information:</label>
-            <InputText id="info" class="form-control" @bind-Value="model.Info" />
-        </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title">Create New House</h3>
+                <HousingWebApp.Pages.Components.FormErrorComponent Error="@error" />
+            </div>
+            <div class="card-body">
+                <form class="needs-validation" @onsubmit="OnSaveHouse">
+                    <div class="form-group">
+                        <label for="info">Information:</label>
+                        <InputText id="info" class="form-control" @bind-Value="model.Info" />
+                    </div>
 
-        <div class="form-group">
-            <label for="mimage">Main Image:</label>
-            <InputFile id="mimage" class="form-control" title="House Image" accept=".png,.jpg" OnChange="HandleMainImage" />
-        </div>
-        <div class="form-group">
-            <label for="mimages">More Images:</label>
-            <InputFile id="mimages" class="form-control" title="House Images" multiple accept=".png,.jpg" OnChange="HandleMoreImages" />
-        </div>
-        <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="number" required id="price" class="form-control" @bind="model.Price" />
-        </div>
-        <div class="form-group">
-            <label for="sr">Square Root:</label>
-            <input type="number" required id="sr" class="form-control" @bind="model.SqrRoot" />
-        </div>
-        <div class="form-group">
-            <label for="hasSP">Has Swimming Pool:</label>
-            <div class="toggle-switch">
-                <input type="checkbox" id="hasSP" class="toggle-input" @bind="model.HouseDetails.HasSwimmingPool" />
-                <label for="hasSP" class="toggle-label"></label>
+                    <div class="form-group">
+                        <label for="mimage">Main Image:</label>
+                        <InputFile id="mimage" class="form-control" title="House Image" accept=".png,.jpg" OnChange="HandleMainImage" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mimages">More Images:</label>
+                        <InputFile id="mimages" class="form-control" title="House Images" multiple accept=".png,.jpg" OnChange="HandleMoreImages" />
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="number" required id="price" class="form-control" @bind="model.Price" />
+                    </div>
+                    <div class="form-group">
+                        <label for="sr">Square Root:</label>
+                        <input type="number" required id="sr" class="form-control" @bind="model.SqrRoot" />
+                    </div>
+                    <div class="form-group">
+                        <label for="hasSP">Has Swimming Pool:</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="hasSP" class="toggle-input" @bind="model.HouseDetails.HasSwimmingPool" />
+                            <label for="hasSP" class="toggle-label"></label>
+                        </div>
+                    </div>
+
+                    <h3>Address</h3>
+                    <div class="form-group">
+                        <label for="address1">Country:</label>
+                        <InputText id="address1" class="form-control" @bind-Value="model.Address.Country" />
+                    </div>
+                    <div class="form-group">
+                        <label for="address2">City:</label>
+                        <InputText id="address3" class="form-control" @bind-Value="model.Address.City" />
+                    </div>
+                    <div class="form-group">
+                        <label for="address3">Street:</label>
+                        <InputText id="address3" class="form-control" @bind-Value="model.Address.Street" />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Create New House</button>
+                </form>
             </div>
         </div>
-
-        <h3>Address</h3>
-        <div class="form-group">
-            <label for="address1">Country:</label>
-            <InputText id="address1" class="form-control" @bind-Value="model.Address.Country" />
-            <ValidationMessage For="@(()=> model.Address.Country)" />
-        </div>
-        <div class="form-group">
-            <label for="address2">City:</label>
-            <InputText id="address3" class="form-control" @bind-Value="model.Address.City" />
-            <ValidationMessage For="@(()=> model.Address.City)" />
-        </div>
-        <div class="form-group">
-            <label for="address3">Street:</label>
-            <InputText id="address3" class="form-control" @bind-Value="model.Address.Street" />
-        </div>
-        <button type="submit" class="btn btn-primary">Create New House</button>
-    </EditForm>
+    </div>
 }
-
 
 @code {
     House? model = null;
@@ -84,7 +83,7 @@ else
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        if (firstRender && LoggedInUser!=null)
+        if (firstRender && LoggedInUser != null)
         {
             model = new House();
             model.AppUserId = LoggedInUser.Id;
@@ -105,7 +104,7 @@ else
     }
     async Task OnSaveHouse()
     {
-        if(Validate())
+        if (Validate())
         {
             await SaveHouseAsync();
             navigateTo.NavigateTo("/", true);
@@ -122,21 +121,21 @@ else
         if (images != null && images.Count > 0)
             model.HouseImages.Base64Images = images;
 
-       // await TransactionService.ExecuteInTransactionAsync(async () =>
-       // {
-            db.Houses.Add(model);
-            await db.SaveChangesAsync();
-      //  });
+        // await TransactionService.ExecuteInTransactionAsync(async () =>
+        // {
+        db.Houses.Add(model);
+        await db.SaveChangesAsync();
+        //  });
     }
     bool Validate()
     {
         //if(model!=null && model.Price<50)
         if (model?.Price < 50)
         {
-            error= "Price must be greater than 50";
+            error = "Price must be greater than 50";
             return false;
         }
-        if(model?.SqrRoot < 50)
+        if (model?.SqrRoot < 50)
         {
             error = "Square root must be greater than 50";
             return false;

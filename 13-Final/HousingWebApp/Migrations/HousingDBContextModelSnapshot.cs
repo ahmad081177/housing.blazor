@@ -70,6 +70,10 @@ namespace HousingWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
@@ -85,6 +89,9 @@ namespace HousingWebApp.Migrations
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfileImage")
+                        .HasColumnType("varchar(max)");
 
                     b.HasKey("Id");
 

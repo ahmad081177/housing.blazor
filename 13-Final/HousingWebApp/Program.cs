@@ -27,8 +27,8 @@ builder.Services.AddSingleton<EmailService>(); //On instance, at server level
 builder.Services.AddSingleton<AddressService>();
 builder.Services.AddSingleton<ImageService>(provider =>
 {
-    var storageConfiguration = builder.Configuration.GetSection("Storage");
-    var imagesFolderPath = storageConfiguration["Images"];
+    var storageConfiguration = builder.Configuration.GetSection("AppSettings");
+    var imagesFolderPath = storageConfiguration["Storage:Images"];
     return new ImageService(imagesFolderPath);
 });
 

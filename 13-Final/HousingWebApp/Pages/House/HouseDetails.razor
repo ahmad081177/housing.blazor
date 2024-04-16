@@ -31,11 +31,11 @@
 {
     <!-- House Details -->
     <div class="card" style="width:50%">
-        <img class="card-img-top" style="width:50%" src="@house.HouseImages.MainImage" />
+        @* <img class="card-img-top" style="width:50%" src="@house.HouseImages.MainImage" /> *@
         <div class="card-body">
             <h5 class="card-title">@house.Info</h5>
             <div style="width:50%">
-                <ImagesSliderComponent Base64Images="@house.HouseImages.Base64Images"/>
+                <ImagesSliderComponent Base64Images="@allImages"/>
             </div>
 
             <p class="card-text">Price: @house.Price</p>
@@ -45,14 +45,20 @@
                 <p class="card-text">Has Swimming Pool:<span class="oi oi-check" style="color:green"></span></p>
             }
         </div>
+        <div class="card-footer">
+            <p>Contact Information:</p>
+            <p>Email: <a href="mailto:@house.AppUser.Email">@house.AppUser.Email</a></p>
+            @if (!string.IsNullOrEmpty(house.AppUser.Phone)){
+                < p > Phone: < a href = "tel:@house.AppUser.Phone" > @house.AppUser.Phone </ a ></ p >
+            }
+        </div>
     </div>
     <!-- Reviews -->
     <ReviewsComponent HouseId="@HouseId" />
-
 }
 else
 {
-    <h4>Loading...</h4>
+    <DefaultProgressBarComponent />
 }
 
 @code {
@@ -61,13 +67,18 @@ else
     private string ReviewText { get; set; } = "";
     private int Rating { get; set; } = 3;
     private House? house;
-
+    private List<string> allImages { get; set; }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
         if (firstRender)
         {
             await FetchHouseDataAsync();
+            if(house!=null){
+                allImages = new();
+                allImages.Add(house.HouseImages.MainImage);
+                allImages.AddRange(house.HouseImages.Base64Images);
+            }
             StateHasChanged();
         }
     }
