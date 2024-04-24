@@ -38,4 +38,8 @@
     <Folder Include="wwwroot\storage\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HousingModels\HousingModels.csproj" />
+  </ItemGroup>
+
 </Project>

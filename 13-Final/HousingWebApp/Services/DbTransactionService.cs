@@ -1,5 +1,5 @@
 ﻿using System;
-using HousingWebApp.Models;
+using HousingWebApp.DB;
 
 namespace HousingWebApp.Services
 {

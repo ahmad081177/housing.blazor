@@ -1,4 +1,4 @@
-﻿using HousingWebApp.Models;
+﻿using HousingModels.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace HousingWebApp.ViewModels

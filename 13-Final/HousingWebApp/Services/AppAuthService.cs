@@ -1,4 +1,5 @@
-﻿using HousingWebApp.Models;
+﻿using HousingModels.Models;
+using HousingWebApp.DB;
 using Microsoft.EntityFrameworkCore;
 
 namespace HousingWebApp.Services
