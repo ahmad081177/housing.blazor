@@ -1,0 +1,98 @@
+﻿@page "/house/gmap/{HouseId:int?}"
+
+@inherits AuthComponent
+
+@using HousingWebApp.Services
+@using Microsoft.EntityFrameworkCore
+@inject IJSRuntime JS
+@inject HousingDBContext db
+@inject IDbTransactionService TransactionService
+@inject IConfiguration configuration
+@inject AddressService addressService
+
+<PageTitle>GMap</PageTitle>
+<h3>House GMaps</h3>
+
+<div id="gmap"></div>
+@code {
+    //Optional parameter to show a specific house
+    [Parameter]
+    public int? HouseId { get; set; }
+    private House? House { get; set; } = null;
+
+    private List<House>? Houses = null;
+    private IJSObjectReference? module;
+
+    async Task LoadHousesAsync()
+    {
+        if (Houses == null)
+        {
+           //await TransactionService.ExecuteInTransactionAsync(async () =>
+           // {
+                Houses = await db.Houses
+                .Include(h => h.Address)
+                .Include(h => h.AppUser)
+                .Include(h => h.HouseImages)
+                .Include(h => h.HouseDetails)
+                .ToListAsync();
+
+                if (HouseId.HasValue)
+                {
+                    //Get House from Houses based on HouseId
+                    House = Houses.FirstOrDefault(h => h.Id == HouseId.Value);
+                }
+          //  });
+        }
+
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            string? key = addressService.GetGKey();
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new Exception("Google Maps API Key is missing.");
+            }
+            // Call JavaScript function to initialize Google Maps
+            await JS.InvokeVoidAsync("initializeGoogleMap", key);
+
+            await LoadHousesAsync();
+            (double lat, double lon, double zoom) = await GetMapCenterAsync();
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "/Pages/House/HouseGMaps.razor.js");
+            await module.InvokeVoidAsync("initMap", lat, lon, zoom);
+
+            StateHasChanged();
+
+            await ShowHousesAsync();
+            StateHasChanged();
+        }
+    }
+    private async Task<(double, double, double)> GetMapCenterAsync()
+    {
+        if (HouseId.HasValue && House != null)
+        {
+            return (House.Address.Lat, House.Address.Longt, 18);
+        }
+        else
+        {
+            double lat = 32.7, lon = 34.8, zoom = 10;
+
+            if (LoggedInUser != null)
+            {
+                lon = LoggedInUser.Address.Longt;
+                lat = LoggedInUser.Address.Lat;
+                zoom = 15;
+            }
+            return (lat, lon, zoom);
+        }
+    }
+    private async Task ShowHousesAsync()
+    {
+        // Call the JavaScript function with the serialized JSON data
+        if(Houses!=null && Houses.Any() && module!=null){
+            await module.InvokeVoidAsync("show_houses", Houses);
+        }
+    }
+}

@@ -1,0 +1,101 @@
+﻿@page "/house/{HouseId:int}"
+
+@using Microsoft.EntityFrameworkCore
+@using HousingWebApp.Pages.Components
+@using HousingWebApp.Services
+
+@inherits AuthComponent
+
+@inject IDbTransactionService TransactionService
+@inject HousingDBContext db
+@inject NavigationManager navigateTo
+
+<PageTitle>House Details</PageTitle>
+
+<!-- Header Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">House Details</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="" @onclick="GotoMap">Show on Map</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@if (house != null)
+{
+    <!-- House Details -->
+    <div class="card" style="width:50%">
+        @* <img class="card-img-top" style="width:50%" src="@house.HouseImages.MainImage" /> *@
+        <div class="card-body">
+            <h5 class="card-title">@house.Info</h5>
+            <div style="width:50%">
+                <ImagesSliderComponent Base64Images="@allImages"/>
+            </div>
+
+            <p class="card-text">Price: @house.Price</p>
+            <p class="card-text">Square Root: @house.SqrRoot</p>
+            @if (house.HouseDetails.HasSwimmingPool)
+            {
+                <p class="card-text">Has Swimming Pool:<span class="oi oi-check" style="color:green"></span></p>
+            }
+        </div>
+        <div class="card-footer">
+            <p>Contact Information:</p>
+            <p>Email: <a href="mailto:@house.AppUser.Email">@house.AppUser.Email</a></p>
+            @if (!string.IsNullOrEmpty(house.AppUser.Phone)){
+                < p > Phone: < a href = "tel:@house.AppUser.Phone" > @house.AppUser.Phone </ a ></ p >
+            }
+        </div>
+    </div>
+    <!-- Reviews -->
+    <ReviewsComponent HouseId="@HouseId" />
+}
+else
+{
+    <DefaultProgressBarComponent />
+}
+
+@code {
+    [Parameter]
+    public int HouseId { get; set; }
+    private string ReviewText { get; set; } = "";
+    private int Rating { get; set; } = 3;
+    private House? house;
+    private List<string> allImages { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            await FetchHouseDataAsync();
+            if(house!=null){
+                allImages = new();
+                allImages.Add(house.HouseImages.MainImage);
+                allImages.AddRange(house.HouseImages.Base64Images);
+            }
+            StateHasChanged();
+        }
+    }
+    void GotoMap()
+    {
+        navigateTo.NavigateTo($"/house/gmap/{HouseId}");
+    }
+    private async Task FetchHouseDataAsync()
+    {
+       // await TransactionService.ExecuteInTransactionAsync(async () =>
+       // {
+            //get house out of the id
+            house = await db.Houses
+            .Include(h => h.HouseDetails)
+            .Include(h => h.HouseImages)
+            .Include(h => h.Address)
+            .Include(h => h.AppUser)
+            .FirstOrDefaultAsync(d => d.Id == HouseId);
+       // });
+    }
+}

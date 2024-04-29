@@ -1,0 +1,26 @@
+﻿@page "/unauthorized"
+
+<PageTitle>Unauthorized Access</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Unauthorized</h1>
+            <h2>You are not authorized to access this resource.</h2>
+            <p>The requested resource requires specific permissions that you may not currently possess.</p>
+            <a href="/" class="btn btn-primary">Go to Home Page</a>
+            @if (ShouldShowLoginLink())
+            {
+                <a href="/login" class="btn btn-secondary">Login</a>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    bool ShouldShowLoginLink()
+    {
+        // Implement login link logic
+        return true;
+    }
+}

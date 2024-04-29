@@ -1,0 +1,137 @@
+﻿@page "/admin/users"
+@using HousingWebApp.Services
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Microsoft.EntityFrameworkCore
+@using HousingWebApp.Pages.Components
+
+@inherits AuthComponent
+
+@inject IDbTransactionService TransactionService
+@inject HousingDBContext db
+@inject ProtectedLocalStorage storage
+@inject NavigationManager navigateTo
+
+
+@if (users == null)
+{
+    <DefaultProgressBarComponent/>
+}
+else
+{
+    <div class="container mt-5">
+        <h3 class="text-center">All Users</h3>
+        <div class="row justify-content-center mb-3">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Filter users by first name, last name, or email" @bind="filterText" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" @onclick="ClearFilterText">
+                            <i class="oi oi-x"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Is Admin</th>
+                            <th>Is Blocked</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in FilteredUsers)
+                        {
+                            <tr>
+                                <td>@user.Id</td>
+                                <td>@user.FirstName</td>
+                                <td>@user.LastName</td>
+                                <td>@user.Email</td>
+                                <td>@user.Phone</td>
+                                <td>@(user.IsAdmin ? "Yes" : "No")</td>
+                                <td>@(user.IsBlocked ? "Yes" : "No")</td>
+                                <td>
+                                    <button @onclick="() => ToggleBlockUserAsync(user)" class="btn btn-sm @(user.IsBlocked ? "btn-success" : "btn-danger")">
+                                        @(user.IsBlocked ? "Unblock" : "Block")
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<AppUser>? users;
+    string error = "";
+    string filterText = "";
+    IEnumerable<AppUser> FilteredUsers
+    {
+        get
+        {
+            if (string.IsNullOrWhiteSpace(filterText))
+            {
+                return users;
+            }
+            else
+            {
+                return users.Where(u =>
+                    u.FirstName.ToLower().Contains(filterText.ToLower()) ||
+                    u.LastName.ToLower().Contains(filterText.ToLower()) ||
+                    u.Email.ToLower().Contains(filterText.ToLower())
+                );
+            }
+        }
+    }
+    void ClearFilterText()
+    {
+        filterText = "";
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        error = "";
+        if(LoggedInUser!=null && firstRender)
+        {
+            if (LoggedInUser.IsAdmin)
+            {
+                // Load all users
+                await LoadUsersAsync();
+            }
+            else
+            {
+                // Redirect to home page if not admin
+                navigateTo.NavigateTo("/unauthorized ", true);
+                return;
+            }
+            StateHasChanged();
+        }
+    }
+    private async Task LoadUsersAsync()
+    {
+        //await TransactionService.ExecuteInTransactionAsync(async () =>
+       // {
+            users = await db.AppUsers.ToListAsync();
+       // });
+    }
+    private async Task ToggleBlockUserAsync(AppUser user)
+    {
+       // await TransactionService.ExecuteInTransactionAsync(async () =>
+      // {
+            user.IsBlocked = !user.IsBlocked;
+            db.AppUsers.Update(user);
+       // });
+        StateHasChanged();
+    }
+}

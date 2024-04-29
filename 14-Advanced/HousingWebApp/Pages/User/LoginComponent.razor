@@ -1,0 +1,91 @@
+﻿@page "/login"
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Microsoft.EntityFrameworkCore
+
+@inject NavigationManager navigateTo
+@inject HousingDBContext db
+@inject ProtectedLocalStorage storage
+@inject IDbTransactionService TransactionService
+
+<PageTitle>Login to Housing</PageTitle>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title text-center">Welcome to Housing App</h3>
+                </div>
+                <div class="card-body">
+                    <form @onsubmit="@Login">
+                        <div class="mb-3">
+                            <label for="email" class="form-label"><b>Email:</b></label>
+                            <input type="email" class="form-control" placeholder="user@gmail.com" @bind="email" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label"><b>Password:</b></label>
+                            <input type="password" class="form-control" placeholder="****" @bind="password" required />
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary mx-5"> Login </button>
+                        </div>
+                        <div class="text-center my-3">
+                            <a href="/register" class="btn btn-link">Register</a>
+                            <a href="/user/password/reset" class="btn btn-link">Forgot Password</a>
+                        </div>
+                        <HousingWebApp.Pages.Components.FormErrorComponent Error="@error"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+    string email { get; set; }
+    string password { get; set; }
+    string error { get; set; } = "";
+    AppUser? user;
+    async Task FetchUserAsync(string email, string password)
+    {
+       // await TransactionService.ExecuteInTransactionAsync(async () =>
+       // {
+            //goto DB and try login...
+            user = await db.AppUsers
+            .Where(u => u.Email == email && u.Password == password)
+            .Include(u => u.Address)
+            .FirstOrDefaultAsync();
+       // });
+    }
+    async Task Login()
+    {
+        error = "";
+        if(email==""||password=="")
+        {
+            error = "Please enter email and password";
+            StateHasChanged();
+            return;
+        }
+        //goto DB and try login...
+        var user = await db.AppUsers
+            .Where(u => u.Email == email && u.Password == password)
+            .Include(u => u.Address)
+            .FirstOrDefaultAsync();
+        if(user==null)
+        {
+            error = "Invalid email or password";
+            StateHasChanged();
+            return;
+        }
+        if(user.IsBlocked)
+        {
+            error = "User is blocked! Please contact the administrator";
+            StateHasChanged();
+            return;
+        }
+        //save email in browser cookies
+        await storage.SetAsync("email", email);
+        
+        //goto home page
+        navigateTo.NavigateTo("/",true);
+    }
+}

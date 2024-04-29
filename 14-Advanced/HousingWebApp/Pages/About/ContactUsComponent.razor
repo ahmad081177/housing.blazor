@@ -1,0 +1,90 @@
+﻿@page "/contact"
+@using System.ComponentModel.DataAnnotations
+@using HousingWebApp.Pages.Components
+@inject EmailService EmailService
+@inject NavigationManager NavigateTo
+
+@if(contactModel == null)
+{
+    <DefaultProgressBarComponent/>
+}
+else{
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h3 class="text-center">Contact Us</h3>
+                <HousingWebApp.Pages.Components.FormErrorComponent error="@error" />
+                
+                <EditForm Model="@contactModel" OnValidSubmit="@HandleValidSubmit">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">Name:</label>
+                        <InputText id="Name" class="form-control" @bind-Value="contactModel.Name" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email:</label>
+                        <InputText id="Email" class="form-control" @bind-Value="contactModel.Email" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Message" class="form-label">Message:</label>
+                        <InputTextArea id="Message" class="form-control" @bind-Value="contactModel.Message" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+}
+@code {
+    private ContactModel? contactModel;
+    string error = "";
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if(firstRender)
+        {
+            contactModel = new ContactModel();
+            StateHasChanged();
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        error = "";
+        if (contactModel!=null && !string.IsNullOrEmpty(contactModel.Name) &&
+        !string.IsNullOrEmpty(contactModel.Email) &&
+            !string.IsNullOrEmpty(contactModel.Message))
+        {
+            string subject = "Contact Us Form Submission";
+            var w = Task.Run(async () =>
+            {
+                await EmailService.SendEmailAsync(contactModel.Email, subject, contactModel.Message, contactModel.Name);
+            });
+            NavigateTo.NavigateTo("/", true);
+        }
+        else
+        {
+            error = "Please fill in all fields";
+        }
+    }
+
+    public class ContactModel
+    {
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        public string Message { get; set; }
+    }
+}

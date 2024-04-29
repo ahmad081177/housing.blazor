@@ -1,0 +1,297 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FD72BE16-C35F-478C-A605-AE37B70CE09C}|..\\SqlGPT\\SqlGPT.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\sqlgpt\\howto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD72BE16-C35F-478C-A605-AE37B70CE09C}|..\\SqlGPT\\SqlGPT.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\sqlgpt\\sqlgpt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{999D7137-458D-4651-9C31-68FBA8489503}|..\\TestMe\\TestMe.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\testme\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD72BE16-C35F-478C-A605-AE37B70CE09C}|..\\SqlGPT\\SqlGPT.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\sqlgpt\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\about\\contactuscomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\about\\contactuscomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\about\\aboutuscomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\about\\aboutuscomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{999D7137-458D-4651-9C31-68FBA8489503}|..\\TestMe\\TestMe.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\testme\\testme.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\services\\sqlgptservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:services\\sqlgptservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\services\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:services\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\services\\dbtransactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:services\\dbtransactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\services\\appauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:services\\appauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\house\\edithousecomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\house\\edithousecomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|d:\\personal\\school\\asp.net.2024\\tutorials\\housingwebapp\\pages\\user\\alluserscomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6BF4C770-4FAE-4CB6-BEC5-67E795D40724}|HousingWebApp.csproj|solutionrelative:pages\\user\\alluserscomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\HouseImages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\HouseImages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\HousingDBContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\HousingDBContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HowTo.cs",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\SqlGPT\\HowTo.cs",
+              "RelativeDocumentMoniker": "..\\SqlGPT\\HowTo.cs",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\SqlGPT\\HowTo.cs",
+              "RelativeToolTip": "..\\SqlGPT\\HowTo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T06:27:36.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SQLGPT.cs",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\SqlGPT\\SQLGPT.cs",
+              "RelativeDocumentMoniker": "..\\SqlGPT\\SQLGPT.cs",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\SqlGPT\\SQLGPT.cs",
+              "RelativeToolTip": "..\\SqlGPT\\SQLGPT.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-28T15:55:02.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ContactUsComponent.razor",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\About\\ContactUsComponent.razor",
+              "RelativeDocumentMoniker": "Pages\\About\\ContactUsComponent.razor",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\About\\ContactUsComponent.razor",
+              "RelativeToolTip": "Pages\\About\\ContactUsComponent.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-27T09:00:42.728Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\MainLayout.razor",
+              "RelativeDocumentMoniker": "Shared\\MainLayout.razor",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Shared\\MainLayout.razor",
+              "RelativeToolTip": "Shared\\MainLayout.razor",
+              "ViewState": "AQIAAEsAAAAAAAAAAIBJwFgAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-26T11:21:29.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\TestMe\\Program.cs",
+              "RelativeDocumentMoniker": "..\\TestMe\\Program.cs",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\TestMe\\Program.cs",
+              "RelativeToolTip": "..\\TestMe\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-26T11:21:16.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "secrets.json",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\SqlGPT\\secrets.json",
+              "RelativeDocumentMoniker": "..\\SqlGPT\\secrets.json",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\SqlGPT\\secrets.json",
+              "RelativeToolTip": "..\\SqlGPT\\secrets.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-27T09:12:01.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AboutusComponent.razor",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\About\\AboutusComponent.razor",
+              "RelativeDocumentMoniker": "Pages\\About\\AboutusComponent.razor",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\About\\AboutusComponent.razor",
+              "RelativeToolTip": "Pages\\About\\AboutusComponent.razor",
+              "ViewState": "AQIAACoAAAAAAAAAAAAswDIAAABgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-27T07:41:27.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TestMe.csproj",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\TestMe\\TestMe.csproj",
+              "RelativeDocumentMoniker": "..\\TestMe\\TestMe.csproj",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\TestMe\\TestMe.csproj",
+              "RelativeToolTip": "..\\TestMe\\TestMe.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-26T11:21:13.939Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SQLGPTService.cs",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\SQLGPTService.cs",
+              "RelativeDocumentMoniker": "Services\\SQLGPTService.cs",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\SQLGPTService.cs",
+              "RelativeToolTip": "Services\\SQLGPTService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T09:11:09.289Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ImageService.cs",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\ImageService.cs",
+              "RelativeDocumentMoniker": "Services\\ImageService.cs",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\ImageService.cs",
+              "RelativeToolTip": "Services\\ImageService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T09:10:50.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DbTransactionService.cs",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\DbTransactionService.cs",
+              "RelativeDocumentMoniker": "Services\\DbTransactionService.cs",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\DbTransactionService.cs",
+              "RelativeToolTip": "Services\\DbTransactionService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T09:09:30.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AppAuthService.cs",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\AppAuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AppAuthService.cs",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Services\\AppAuthService.cs",
+              "RelativeToolTip": "Services\\AppAuthService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAIBJwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T09:09:10.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "EditHouseComponent.razor",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\House\\EditHouseComponent.razor",
+              "RelativeDocumentMoniker": "Pages\\House\\EditHouseComponent.razor",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\House\\EditHouseComponent.razor",
+              "RelativeToolTip": "Pages\\House\\EditHouseComponent.razor",
+              "ViewState": "AQIAABUAAAAAAAAAAIBJwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-22T06:05:08.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "HouseImages.cs",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\HouseImages.cs",
+              "RelativeDocumentMoniker": "Models\\HouseImages.cs",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\HouseImages.cs",
+              "RelativeToolTip": "Models\\HouseImages.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T05:41:21.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "HousingDBContext.cs",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\HousingDBContext.cs",
+              "RelativeDocumentMoniker": "Models\\HousingDBContext.cs",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Models\\HousingDBContext.cs",
+              "RelativeToolTip": "Models\\HousingDBContext.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T05:37:43.573Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AllUsersComponent.razor",
+              "DocumentMoniker": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\User\\AllUsersComponent.razor",
+              "RelativeDocumentMoniker": "Pages\\User\\AllUsersComponent.razor",
+              "ToolTip": "D:\\personal\\school\\asp.net.2024\\tutorials\\HousingWebApp\\Pages\\User\\AllUsersComponent.razor",
+              "RelativeToolTip": "Pages\\User\\AllUsersComponent.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-22T05:23:26.174Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "300a1233-b55f-4cfe-baf7-ac4c21fc06c9",
+        "Display": 0,
+        "X": 345,
+        "Y": 68,
+        "Width": 1138,
+        "Height": 750,
+        "WindowState": 0
+      },
+      "DocumentGroups": []
+    }
+  ]
+}

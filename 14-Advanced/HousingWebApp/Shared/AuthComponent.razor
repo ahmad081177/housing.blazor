@@ -1,0 +1,42 @@
+﻿<!-- AuthComponent.razor -->
+@using HousingWebApp.Services
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Microsoft.EntityFrameworkCore
+
+@inherits LayoutComponentBase
+
+@inject NavigationManager NavigationManager
+@inject ProtectedLocalStorage storage
+@inject AppAuthService AuthService
+
+
+@code {
+    protected AppUser? LoggedInUser { get; private set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            var isLoggedIn = await CheckUserLoggedIn();
+            if (!isLoggedIn)
+            {
+                NavigationManager.NavigateTo("/login");
+            }
+        }
+    }
+   
+    private async Task<bool> CheckUserLoggedIn()
+    {
+        var email = await storage.GetAsync<string>("email");
+        if (email.Success)
+        {
+            LoggedInUser = await AuthService.GetUserAsync(email.Value);
+            if (LoggedInUser == null)
+            {
+                await storage.DeleteAsync("email");
+            }
+        }
+        return LoggedInUser != null;
+    }
+}
