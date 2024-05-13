@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousingWebApp", "HousingWeb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlGPT", "..\SqlGPT\SqlGPT.csproj", "{FD72BE16-C35F-478C-A605-AE37B70CE09C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMe", "..\TestMe\TestMe.csproj", "{999D7137-458D-4651-9C31-68FBA8489503}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousingModels", "..\HousingModels\HousingModels.csproj", "{CABC26C9-00DA-48E2-8FEB-1842332DE28F}"
 EndProject
 Global

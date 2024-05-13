@@ -1,20 +1,29 @@
 ﻿using System;
-using HousingModels.Models;
 
 namespace SqlGPT
 {
+    internal class AppUser
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+    }
+    internal class House
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Price { get; set; }
+        public int OwnerId { get; set; }
+    }
     internal class HowTo
     {
         static async Task Main(string[] args)
         {
             //NOTE - This code should be in the blazor server project
-            SQLGPT gpt = new("sk-...");
+            SQLLLM gpt = new("sk-...", SQLLLM.LLMType.OpenAI);
             gpt.AddClass(typeof(AppUser), "AppUsers", "Represents AppUsers table.");
             gpt.AddClass(typeof(House), "Houses", "Represents Houses table");
-            gpt.AddClass(typeof(Address), "Addresses", "Represents Addresses table - for house and appuser");
-            gpt.AddClass(typeof(HouseDetails), "HousesDetails", "Represents HousesDetails table - more details of the house");
-            gpt.AddClass(typeof(HouseImages), "HouseImages", "Represents HouseImages table - images of the house");
-            gpt.AddClass(typeof(Review), "Reviews", "Represents Reviews table - each review is from user on one house");
 
             Console.WriteLine("Enter your query: ");
             string? query = Console.ReadLine();
